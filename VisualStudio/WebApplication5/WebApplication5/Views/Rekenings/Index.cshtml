@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication5.Models.Rekening>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Balans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RekeningType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KlantNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hash)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balans)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RekeningType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KlantNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hash)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RekeningNr }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RekeningNr }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RekeningNr })
+        </td>
+    </tr>
+}
+
+</table>
