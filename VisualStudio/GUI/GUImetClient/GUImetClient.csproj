@@ -79,6 +79,7 @@
     <Compile Include="BlockScreen.Designer.cs">
       <DependentUpon>BlockScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -84,6 +84,7 @@ namespace GUI_Project_periode_3
                 Error.show(pincode);
             }
         }
+        //aaaaaa
 
       /*  public void btnUitloggen_Click(object sender, EventArgs e)
         {
