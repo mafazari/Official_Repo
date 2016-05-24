@@ -69,6 +69,13 @@ namespace GUI_Project_periode_3
                         clearall();
                         insertedDigits = 0;
                     }
+                    else if (input.Contains("*KEY"))
+                    {
+                        new Form1().Show();
+                        Thread.Sleep(1);
+                        this.Hide();
+                        break;
+                    }
                     if (insertedDigits == 4)
                     {
                         if (input.Contains("*")) { confirmed = true; }
