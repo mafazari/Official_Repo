@@ -37,7 +37,7 @@ namespace GUImetClient
             }
 
             Form2 pinInvoer = new Form2();
-            Notform1 home = new Notform1();
+            Home home = new Home();
             ArduinoData arduino = new ArduinoData();
             Hash security = new Hash();
             Executer executer;
@@ -115,7 +115,7 @@ namespace GUImetClient
             //Thread.Sleep(1);
             //this.Hide();
 
-            new Notform1().Show();
+            new Home().Show();
             Thread.Sleep(1);
             this.Close();
         }
