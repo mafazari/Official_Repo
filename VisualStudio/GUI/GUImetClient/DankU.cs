@@ -12,9 +12,9 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form7 : Form
+    public partial class DankU : Form
     {
-        public Form7()
+        public DankU()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace GUI_Project_periode_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GUI_Project_periode_3.Form1.ActiveForm.Close();
+            GUI_Project_periode_3.Home.ActiveForm.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

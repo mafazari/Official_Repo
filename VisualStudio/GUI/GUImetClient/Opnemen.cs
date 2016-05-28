@@ -12,9 +12,9 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form4 : Form
+    public partial class Opnemen : Form
     {
-        public Form4()
+        public Opnemen()
         {
             InitializeComponent();
         }
@@ -26,32 +26,32 @@ namespace GUI_Project_periode_3
             switch (caseString)
             {
                 case "1KEY": //10 euro 
-                    new Form8().Show();
+                    new Bon().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "3KEY": //20 euro
-                    new Form8().Show();
+                    new Bon().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "4KEY": //50 euro
-                    new Form8().Show();
+                    new Bon().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "6KEY": //70 euro
-                    new Form8().Show();
+                    new Bon().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "7KEY": //bedrag invoer
-                    new Form3().Show();
+                    new Bedraginvoer().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "#KEY": //afbreken
-                    new Form9().Show();
+                    new Stoppen().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
@@ -61,12 +61,12 @@ namespace GUI_Project_periode_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GUI_Project_periode_3.Form1.ActiveForm.Close();
+            GUI_Project_periode_3.Home.ActiveForm.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form5().Show();
+            new Transactie().Show();
             Thread.Sleep(1);
             this.Hide();
         }
@@ -85,21 +85,21 @@ namespace GUI_Project_periode_3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form5().Show();
+            new Transactie().Show();
             Thread.Sleep(1);
             this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new Form5().Show();
+            new Transactie().Show();
             Thread.Sleep(1);
             this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            new Form5().Show();
+            new Transactie().Show();
             Thread.Sleep(1);
             this.Hide();
         }
@@ -111,14 +111,14 @@ namespace GUI_Project_periode_3
 
         private void button6_Click(object sender, EventArgs e)
         {
-            new Form3().Show();
+            new Bedraginvoer().Show();
             Thread.Sleep(1);
             this.Hide();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            new Form7().Show();
+            new DankU().Show();
             Thread.Sleep(1);
             this.Close();
         }

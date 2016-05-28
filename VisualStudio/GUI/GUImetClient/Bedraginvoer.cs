@@ -12,9 +12,9 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form3 : Form
+    public partial class Bedraginvoer : Form
     {
-        public Form3()
+        public Bedraginvoer()
         {
             InitializeComponent();
         }
@@ -40,15 +40,15 @@ namespace GUI_Project_periode_3
         }
         public void setDisplay(String value)
         {
-            bedragInvoer.Text = value + "€";
+            bedragInvoerlbl.Text = value + "€";
         }
         public void clearDisplay()
         {
-            bedragInvoer.Text = "";
+            bedragInvoerlbl.Text = "";
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form4().Show();
+            new Opnemen().Show();
             Thread.Sleep(1);
             this.Hide();
         }
@@ -65,12 +65,12 @@ namespace GUI_Project_periode_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GUI_Project_periode_3.Form1.ActiveForm.Close();
+            GUI_Project_periode_3.Home.ActiveForm.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form5().Show();
+            new Transactie().Show();
             Thread.Sleep(1);
             this.Hide();
         }

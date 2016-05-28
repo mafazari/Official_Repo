@@ -1,6 +1,6 @@
 ﻿namespace GUI_Project_periode_3
 {
-    partial class Form3
+    partial class Bedraginvoer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bedraginvoer));
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -36,7 +36,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.bedragInvoer = new System.Windows.Forms.TextBox();
+            this.bedragInvoerlbl = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +66,7 @@
             this.tableLayoutPanel2.Controls.Add(this.button2, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.button1, 3, 5);
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.bedragInvoer, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.bedragInvoerlbl, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
@@ -150,19 +150,19 @@
             this.label2.Text = "Voer het gewenste bedrag in";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // bedragInvoer
+            // bedragInvoerlbl
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.bedragInvoer, 2);
-            this.bedragInvoer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bedragInvoer.Font = new System.Drawing.Font("Calibri", 42F);
-            this.bedragInvoer.Location = new System.Drawing.Point(641, 439);
-            this.bedragInvoer.Multiline = true;
-            this.bedragInvoer.Name = "bedragInvoer";
-            this.bedragInvoer.Size = new System.Drawing.Size(633, 103);
-            this.bedragInvoer.TabIndex = 13;
-            this.bedragInvoer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tableLayoutPanel2.SetColumnSpan(this.bedragInvoerlbl, 2);
+            this.bedragInvoerlbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bedragInvoerlbl.Font = new System.Drawing.Font("Calibri", 42F);
+            this.bedragInvoerlbl.Location = new System.Drawing.Point(641, 439);
+            this.bedragInvoerlbl.Multiline = true;
+            this.bedragInvoerlbl.Name = "bedragInvoerlbl";
+            this.bedragInvoerlbl.Size = new System.Drawing.Size(633, 103);
+            this.bedragInvoerlbl.TabIndex = 13;
+            this.bedragInvoerlbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Form3
+            // Bedraginvoer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,7 +171,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.tableLayoutPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form3";
+            this.Name = "Bedraginvoer";
             this.Text = "Form3";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -191,6 +191,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox bedragInvoer;
+        private System.Windows.Forms.TextBox bedragInvoerlbl;
     }
 }

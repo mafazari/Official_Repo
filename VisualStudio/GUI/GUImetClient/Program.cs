@@ -486,7 +486,7 @@ public class Executer
 
     private void pin()
     {
-        Form4 opnemen = new Form4();
+        Opnemen opnemen = new Opnemen();
         Boolean printTicket = false;
         Boolean cancelled = false;
         Boolean goBack = true;
@@ -543,7 +543,7 @@ public class Executer
                 uploadConnection.transaction(pasID, rekeningID, saldo - amount);
                 //Error.show(amount.ToString());
             }
-            Form8 asker = new Form8();
+            Bon asker = new Bon();
             asker.Show();
             while (true)
             {
@@ -569,7 +569,7 @@ public class Executer
             }
             if (goBack != false)
             {
-                Form7 goAway = new Form7();
+                DankU goAway = new DankU();
                 goAway.Show();
                 System.Threading.Thread.Sleep(5000);
                 goAway.Hide();
@@ -580,7 +580,7 @@ public class Executer
 
     public void checkSaldo()
     {
-        Form6 saldoDisplay = new Form6(saldo);
+        Saldo saldoDisplay = new Saldo(saldo);
         saldoDisplay.Show();
         saldoDisplay.Refresh();
         while (true)
@@ -594,7 +594,7 @@ public class Executer
             }
             else if (input.Contains("#"))
             {
-                Form7 goAway = new Form7();
+                DankU goAway = new DankU();
                 endOfSession = true;
                 saldoDisplay.Close();
                 break;
@@ -606,7 +606,7 @@ public class Executer
     {
         Printer bonPrinter = new Printer(userName, 70);
         bonPrinter.printTicket();
-        Form7 quickBye = new Form7();
+        DankU quickBye = new DankU();
         System.Threading.Thread.Sleep(5000);
         endOfSession = true;
         quickBye.Hide();

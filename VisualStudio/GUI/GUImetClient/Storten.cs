@@ -12,23 +12,23 @@ using System.Threading;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form10 : Form
+    public partial class Storten : Form
     {
-        public Form10()
+        public Storten()
         {
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form8().Show();
+            new Bon().Show();
             Thread.Sleep(1);
             this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form7().Show();
+            new DankU().Show();
             Thread.Sleep(1);
             this.Close();
         }

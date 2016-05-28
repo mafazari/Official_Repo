@@ -12,14 +12,14 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form6 : Form
+    public partial class Saldo : Form
     {
-        public Form6()
+        public Saldo()
         {
             InitializeComponent();
         }
 
-        public Form6(double saldo)
+        public Saldo(double saldo)
         {
            //InitializeComponent();
             textBox1.Text = saldo.ToString();
@@ -33,12 +33,12 @@ namespace GUI_Project_periode_3
             switch (caseString)
             {
                 case "*KEY":
-                    new Form3().Show();
+                    new Bedraginvoer().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "#KEY":
-                    new Form9().Show();
+                    new Stoppen().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
@@ -47,14 +47,14 @@ namespace GUI_Project_periode_3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form4().Show();
+            new Opnemen().Show();
             Thread.Sleep(1);
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form9().Show();
+            new Stoppen().Show();
             Thread.Sleep(1);
             this.Hide();
         }

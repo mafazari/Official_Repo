@@ -16,11 +16,11 @@ using GUI_Project_periode_3;
 namespace GUI_Project_periode_3
 {
 
-    public partial class Form1 : Form
+    public partial class Home : Form
     {
 
   
-        public Form1()
+        public Home()
         {
             InitializeComponent();
         }
@@ -36,22 +36,22 @@ namespace GUI_Project_periode_3
             switch (caseSwitch)
             {
                 case "AKEY":
-                    new Form4().Show();
+                    new Opnemen().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "BKEY":
-                    new Form6().Show();
+                    new Saldo().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "CKEY":
-                    new Form7().Show();
+                    new DankU().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "#KEY" :
-                    new Form9().Show();
+                    new Stoppen().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
@@ -60,7 +60,7 @@ namespace GUI_Project_periode_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GUI_Project_periode_3.Form1.ActiveForm.Close();
+            GUI_Project_periode_3.Home.ActiveForm.Close();
         }
 
 
@@ -76,7 +76,7 @@ namespace GUI_Project_periode_3
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            new Form4().Show();
+            new Opnemen().Show();
             Thread.Sleep(1);
             this.Close();
         }
@@ -92,14 +92,14 @@ namespace GUI_Project_periode_3
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            new Form7().Show();
+            new DankU().Show();
             Thread.Sleep(1);
             this.Close();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            new Form9().Show();
+            new Stoppen().Show();
             Thread.Sleep(1);
             this.Close();
 

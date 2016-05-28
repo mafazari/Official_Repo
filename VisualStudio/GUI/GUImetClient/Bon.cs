@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form8 : Form
+    public partial class Bon : Form
     {
-        public Form8()
+        public Bon()
         {
             InitializeComponent();
         }
@@ -25,9 +25,14 @@ namespace GUI_Project_periode_3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form9().Show();
+            new Stoppen().Show();
             System.Threading.Thread.Sleep(1);
             this.Hide();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

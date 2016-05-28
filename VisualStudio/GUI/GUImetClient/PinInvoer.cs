@@ -26,6 +26,7 @@ namespace GUI_Project_periode_3
         private void Form2_Load(object sender, EventArgs e)
         {
             ArduinoData arduino = new ArduinoData();
+            HTTPget httpget = new HTTPget();
             Hash security = new Hash();
             Boolean pinCorrect = false;
             //bool EE = true;
@@ -70,27 +71,29 @@ namespace GUI_Project_periode_3
                         clearall();
                         insertedDigits = 0;
                     }
-                    else if (input.Contains("*KEY"))
+                    else if (input.Contains("*KEY")) // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
+                    {
+                        new Home().Show();
+                        Thread.Sleep(1);
+                        this.Hide();
+                        break;
+                    }
+
+                    if (insertedDigits == 4)
+                    {
+                        if (input.Contains("*")) { confirmed = true; }
+                    }
+                    /*if(pinCorrect == true)                    //missing pinCorrect checker
                     {
                         new Form1().Show();
                         Thread.Sleep(1);
                         this.Hide();
                         break;
-                    }
-                    if (insertedDigits == 4)
-                    {
-                        if (input.Contains("*")) { confirmed = true; }
-                    }
+                    }*/
                 }
                 Error.show(pincode);
             }
         }
-        //aaaaaa
-
-      /*  public void btnUitloggen_Click(object sender, EventArgs e)
-        {
-            BOOT.restart();
-        }*/
         private void fillarr(Label[] lblarr)
         {
             lblarr[0] = label3;
@@ -100,14 +103,10 @@ namespace GUI_Project_periode_3
         }
         public void clearArr(Label[] lblarr)
         {
-            //String read = pininv.ReadLine();
-            //if(read.Contains("#KEY"))
-            //{
                 for( int i = 0; i < lblarr.Length; i++)
                 {
                     lblarr[i].Text = "";
-                }                             
-            //}
+                }
         }
         private void clearall()
         {
@@ -130,7 +129,7 @@ namespace GUI_Project_periode_3
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Text = ArduinoClass.strInput();
-            new Form1().Show();
+            new Home().Show();
             this.Hide();
         }
 
@@ -206,7 +205,7 @@ namespace GUI_Project_periode_3
             if (read.Contains("*KEY"))
                 {
 
-                    new Form1().Show();
+                    new Home().Show();
                     Thread.Sleep(1);
                     this.Hide();  
 

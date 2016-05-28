@@ -14,6 +14,7 @@ namespace GUImetClient
 {
     public partial class Beginscherm : Form
     {
+        bool config = false;
         public Beginscherm()
         {
             InitializeComponent();
@@ -29,10 +30,14 @@ namespace GUImetClient
         private void Extraladen()
         {
             ArduinoClass bootup = new ArduinoClass();
-            bootup.makePort("COM6");
+            if (!config)
+            {
+                bootup.makePort("COM6");
+                config = true;
+            }
 
             Form2 pinInvoer = new Form2();
-            Form1 home = new Form1();
+            Notform1 home = new Notform1();
             ArduinoData arduino = new ArduinoData();
             Hash security = new Hash();
             Executer executer;
@@ -54,7 +59,7 @@ namespace GUImetClient
 
                 while (true)
                 {
-                    String emu = ("10001\n11248649\n2\n,NEWUID");
+                    String emu = ("AAAAAA\n11248649\n1004\n,NEWUID");
                     //String s = arduino.getFirstString();
                     if (emu.Contains(",NEWUID"))
                     {
@@ -110,7 +115,7 @@ namespace GUImetClient
             //Thread.Sleep(1);
             //this.Hide();
 
-            new Form1().Show();
+            new Notform1().Show();
             Thread.Sleep(1);
             this.Close();
         }

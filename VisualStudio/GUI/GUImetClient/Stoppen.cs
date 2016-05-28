@@ -12,9 +12,9 @@ using System.Data.SqlClient;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form9 : Form
+    public partial class Stoppen : Form
     {
-        public Form9()
+        public Stoppen()
         {
             InitializeComponent();
         }
@@ -27,12 +27,12 @@ namespace GUI_Project_periode_3
             switch (caseString)
             {
                 case "*KEY":
-                    new Form7().Show();
+                    new DankU().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
                 case "#KEY":
-                    new Form1().Show();
+                    new Home().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
@@ -41,14 +41,14 @@ namespace GUI_Project_periode_3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form7().Show();
+            new DankU().Show();
             Thread.Sleep(1);
             this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
+            new Home().Show();
             Thread.Sleep(1);
             this.Close();
         }
