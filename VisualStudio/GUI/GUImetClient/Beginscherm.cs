@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -100,6 +101,17 @@ namespace GUImetClient
                 result = false;
             }
             return result;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //new Form1().Show();
+            //Thread.Sleep(1);
+            //this.Hide();
+
+            new Form1().Show();
+            Thread.Sleep(1);
+            this.Close();
         }
     }
 }

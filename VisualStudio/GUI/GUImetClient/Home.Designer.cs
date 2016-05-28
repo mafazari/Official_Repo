@@ -139,7 +139,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(311, 202);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Snel €70,- geld opnemen [C]";
+            this.button3.Text = "Snel €70,- opnemen [C]";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 

@@ -26,8 +26,9 @@ namespace GUI_Project_periode_3
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            //bootup.makePort("COM6");
-            //ArduinoClass bootup = new ArduinoClass();
+        {            
+            ArduinoClass bootup = new ArduinoClass();
+            bootup.makePort("COM6");
             ArduinoData ad = new ArduinoData();
 
 

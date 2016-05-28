@@ -36,7 +36,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.bedragInvoer = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +66,7 @@
             this.tableLayoutPanel2.Controls.Add(this.button2, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.button1, 3, 5);
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.bedragInvoer, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
@@ -150,17 +150,17 @@
             this.label2.Text = "Voer het gewenste bedrag in";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // bedragInvoer
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.SetColumnSpan(this.label3, 2);
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(641, 327);
-            this.label3.Name = "label3";
-            this.tableLayoutPanel2.SetRowSpan(this.label3, 2);
-            this.label3.Size = new System.Drawing.Size(633, 218);
-            this.label3.TabIndex = 11;
+            this.tableLayoutPanel2.SetColumnSpan(this.bedragInvoer, 2);
+            this.bedragInvoer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bedragInvoer.Font = new System.Drawing.Font("Calibri", 42F);
+            this.bedragInvoer.Location = new System.Drawing.Point(641, 439);
+            this.bedragInvoer.Multiline = true;
+            this.bedragInvoer.Name = "bedragInvoer";
+            this.bedragInvoer.Size = new System.Drawing.Size(633, 103);
+            this.bedragInvoer.TabIndex = 13;
+            this.bedragInvoer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form3
             // 
@@ -190,7 +190,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox bedragInvoer;
     }
 }

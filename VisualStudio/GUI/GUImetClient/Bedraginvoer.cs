@@ -21,9 +21,31 @@ namespace GUI_Project_periode_3
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            ArduinoData arduino = new ArduinoData();
 
+            double bedrag = 0;
+            String bedragString = "";
+            String input;
+            while (true)
+            {
+                input = arduino.getString();
+
+                bedragString += input.ElementAt(0);
+
+                bedrag = Double.Parse(bedragString);
+
+                setDisplay(bedragString);
+                //Convert.ToString(input);
+            }
         }
-
+        public void setDisplay(String value)
+        {
+            bedragInvoer.Text = value + "€";
+        }
+        public void clearDisplay()
+        {
+            bedragInvoer.Text = "";
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             new Form4().Show();
@@ -69,6 +91,11 @@ namespace GUI_Project_periode_3
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
         {
 
         }

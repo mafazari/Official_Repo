@@ -27,7 +27,7 @@ namespace GUI_Project_periode_3
             //AC.makePort("COM6");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Beginscherm());
+            Application.Run(new Form1());
         }
     }
 }

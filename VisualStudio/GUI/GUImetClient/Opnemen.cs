@@ -25,20 +25,32 @@ namespace GUI_Project_periode_3
 
             switch (caseString)
             {
-                case "1KEY":
+                case "1KEY": //10 euro 
+                    new Form8().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
                     break;
-                case "3KEY":
+                case "3KEY": //20 euro
+                    new Form8().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
                     break;
-                case "4KEY":
+                case "4KEY": //50 euro
+                    new Form8().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
                     break;
-                case "6KEY":
+                case "6KEY": //70 euro
+                    new Form8().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
                     break;
-                case "7KEY":
+                case "7KEY": //bedrag invoer
                     new Form3().Show();
                     Thread.Sleep(1);
                     this.Hide();
                     break;
-                case "#KEY":
+                case "#KEY": //afbreken
                     new Form9().Show();
                     Thread.Sleep(1);
                     this.Hide();
