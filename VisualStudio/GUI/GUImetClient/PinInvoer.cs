@@ -64,6 +64,7 @@ namespace GUI_Project_periode_3
                         this.Refresh();
                         pincode += input.ElementAt(0);
                     }
+
                     else if (input.Contains("CKEY"))
                     {
                         clearall();

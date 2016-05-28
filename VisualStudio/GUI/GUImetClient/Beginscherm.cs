@@ -54,10 +54,11 @@ namespace GUImetClient
 
                 while (true)
                 {
-                    String s = arduino.getFirstString();
-                    if (s.Contains(" ,NEWUID"))
+                    String emu = ("10001\n11248649\n2\n,NEWUID");
+                    //String s = arduino.getFirstString();
+                    if (emu.Contains(",NEWUID"))
                     {
-                        pasInformation = s.Split('\n', '\n', '\n');
+                        pasInformation = emu.Split('\n', '\n', '\n');
                         KlantID = pasInformation[2];
                         rekeningID = pasInformation[1];
                         pasID = pasInformation[0];
