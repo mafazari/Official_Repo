@@ -9,14 +9,26 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using GUImetClient;
+using System.Timers;
 
 namespace GUI_Project_periode_3
 {
     public partial class DankU : Form
     {
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         public DankU()
         {
             InitializeComponent();
+            //timer.Tick += new EventHandler();
+            //timer.Interval = 6000;
+            //timer.Start();
+
+           // if (timer.Tick == true)
+
+            //{
+
+            //}
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -31,7 +43,7 @@ namespace GUI_Project_periode_3
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            new Form2().Show();
+            new Beginscherm().Show();
             Thread.Sleep(1);
             this.Close();
         }

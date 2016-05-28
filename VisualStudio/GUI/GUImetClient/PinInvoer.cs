@@ -13,9 +13,9 @@ using System.Threading;
 
 namespace GUI_Project_periode_3
 {
-    public partial class Form2 : Form
+    public partial class PinInvoer : Form
     {
-        public Form2()
+        public PinInvoer()
         {   
             InitializeComponent();
             
@@ -64,6 +64,7 @@ namespace GUI_Project_periode_3
                         }
                         this.Refresh();
                         pincode += input.ElementAt(0);
+                        //Error.show(pincode);
                     }
 
                     else if (input.Contains("CKEY"))
@@ -73,6 +74,7 @@ namespace GUI_Project_periode_3
                     }
                     else if (input.Contains("*KEY")) // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                     {
+                        Error.show(pincode);
                         new Home().Show();
                         Thread.Sleep(1);
                         this.Hide();
@@ -83,15 +85,19 @@ namespace GUI_Project_periode_3
                     {
                         if (input.Contains("*")) { confirmed = true; }
                     }
-                    /*if(pinCorrect == true)                    //missing pinCorrect checker
+                    String hashEmu = "MTEyNDg2NDkxMjM0";
+                    int rekEmu = 11248649;
+                    int pinEmu = Convert.ToInt32(pincode);
+
+                    if (security.makeHash(rekEmu, pinEmu) == hashEmu)                  //missing pinCorrect checker
                     {
-                        new Form1().Show();
+                        new Home().Show();
                         Thread.Sleep(1);
                         this.Hide();
                         break;
-                    }*/
+                    } 
                 }
-                Error.show(pincode);
+                
             }
         }
         private void fillarr(Label[] lblarr)

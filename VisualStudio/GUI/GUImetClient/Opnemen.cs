@@ -25,7 +25,7 @@ namespace GUI_Project_periode_3
 
             switch (caseString)
             {
-                case "1KEY": //10 euro 
+                case "1KEY": //10 euro ---> httppost -10euro
                     new Bon().Show();
                     Thread.Sleep(1);
                     this.Hide();

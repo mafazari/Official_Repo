@@ -36,7 +36,7 @@ namespace GUImetClient
                 config = true;
             }
 
-            Form2 pinInvoer = new Form2();
+            PinInvoer pinInvoer = new PinInvoer();
             Home home = new Home();
             ArduinoData arduino = new ArduinoData();
             Hash security = new Hash();

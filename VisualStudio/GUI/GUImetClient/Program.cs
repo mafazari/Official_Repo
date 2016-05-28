@@ -23,6 +23,9 @@ namespace GUI_Project_periode_3
         [STAThread]
         static void Main()
         {
+            //Hash hash = new Hash();
+            //Error.show(hash.makeHash(11248649, 1234));
+            
             //ArduinoClass AC = new ArduinoClass();
             //AC.makePort("COM6");
             Application.EnableVisualStyles();
@@ -391,7 +394,7 @@ public class HTTPpost
             }
             else
             {
-                Error.show("NIEW BALANS FAILED");
+                Error.show("NIEUW BALANS FAILED");
             }
         }
     }
