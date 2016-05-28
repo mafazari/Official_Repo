@@ -1,0 +1,9 @@
+Niels jonker:
+KlantId = 2;
+PasID = 10001;
+RknID = ;
+
+NEW
+KlantID = 1004
+RekeningID = 11248649     HASH = AAAA
+PasID = AAAAAA
