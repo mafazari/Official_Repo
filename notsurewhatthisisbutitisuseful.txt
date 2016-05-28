@@ -1,0 +1,37 @@
+/*while (pinCorrect == false)
+                    {
+                        int insertedDigits = 0;
+                        String pincode = "";
+                        Boolean confirmed = false;
+                        while (confirmed == false)
+                        {
+                            String input = arduino.getString();
+                            if (checkInput(input) == true && insertedDigits < 4)
+                            {
+                                //pinInvoer.printStar();
+                                //pinInvoer.falsepininfo.Visible = false;
+                                insertedDigits++;
+                                pincode += input.ElementAt(0);
+                            }
+                            else if (input.Contains("#KEY"))
+                            {
+                                reset = true;
+                                break;
+                            }
+                            else if (input.Contains("CKEY"))
+                            {
+                                pinInvoer.clearArr(lblarr);
+                                insertedDigits = 0;
+                                pincode = "";
+                            }
+                            if (insertedDigits == 4)
+                            {
+                                if (input.Contains("*")) { confirmed = true; }
+                            }
+                        }
+                        pinInvoer.clearArr();
+                        if (reset == true)
+                        {
+                            break;
+                        }
+                    }*/
