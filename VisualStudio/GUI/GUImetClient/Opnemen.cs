@@ -17,43 +17,46 @@ namespace GUI_Project_periode_3
         public Opnemen()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
         private void Form4_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
+            HTTPget httpget = new HTTPget();
+            HTTPpost httppost = new HTTPpost();
             String caseString = ad.getString();
-
+            String amount;
             switch (caseString)
             {
                 case "1KEY": //10 euro ---> httppost -10euro
                     new Bon().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "3KEY": //20 euro
                     new Bon().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "4KEY": //50 euro
                     new Bon().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "6KEY": //70 euro
                     new Bon().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "7KEY": //bedrag invoer
                     new Bedraginvoer().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "#KEY": //afbreken
                     new Stoppen().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
             }
 
@@ -68,7 +71,7 @@ namespace GUI_Project_periode_3
         {
             new Transactie().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -87,21 +90,21 @@ namespace GUI_Project_periode_3
         {
             new Transactie().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             new Transactie().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             new Transactie().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace GUI_Project_periode_3
         {
             new Bedraginvoer().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button7_Click(object sender, EventArgs e)

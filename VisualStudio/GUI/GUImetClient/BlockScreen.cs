@@ -15,6 +15,7 @@ namespace GUImetClient
         public BlockScreen()
         {
             InitializeComponent();
+            Cursor.Hide();
             this.Show();
             this.Refresh();
             this.sleepnow().Wait();

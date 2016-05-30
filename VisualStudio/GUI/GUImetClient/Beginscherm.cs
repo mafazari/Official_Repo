@@ -18,6 +18,7 @@ namespace GUImetClient
         public Beginscherm()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         private void Beginscherm_Load(object sender, EventArgs e)
@@ -59,24 +60,30 @@ namespace GUImetClient
 
                 while (true)
                 {
-                    String emu = ("AAAAAA\n11248649\n1004\n,NEWUID");
-                    //String s = arduino.getFirstString();
-                    if (emu.Contains(",NEWUID"))
+                    //String emu = ("AAAAAA\n11248649\n1004\n,NEWUID");
+                    String s = arduino.getFirstString();
+                    if (s.Contains("NEWUID"))
                     {
-                        pasInformation = emu.Split('\n', '\n', '\n');
+                        pasInformation = s.Split('\n', '\n', '\n');
                         KlantID = pasInformation[2];
                         rekeningID = pasInformation[1];
                         pasID = pasInformation[0];
+                        //Error.show("PasID: " + pasID + "\nRekID: " + rekeningID + "\nKlantID: " + KlantID);
+                        pinInvoer.giveInfo(pasInformation);
                         break;
                     }
-                    pinInvoer.Show();
+                    //pinInvoer.Show();
                 }
                 if (!httpget.getActiefStand(pasID))
                 {
                     BlockScreen tmp = new BlockScreen();
                     break;
-                }
+                } 
                 pinInvoer.Show();
+                
+                Thread.Sleep(1);
+                this.Close();
+                break;
             }
         }
 

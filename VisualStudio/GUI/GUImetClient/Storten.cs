@@ -17,6 +17,7 @@ namespace GUI_Project_periode_3
         public Storten()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)

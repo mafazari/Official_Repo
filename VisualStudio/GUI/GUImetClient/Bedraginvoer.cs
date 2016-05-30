@@ -17,13 +17,14 @@ namespace GUI_Project_periode_3
         public Bedraginvoer()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
             ArduinoData arduino = new ArduinoData();
 
-            double bedrag = 0;
+            int bedrag = 0;
             String bedragString = "";
             String input;
             while (true)
@@ -31,11 +32,26 @@ namespace GUI_Project_periode_3
                 input = arduino.getString();
 
                 bedragString += input.ElementAt(0);
-
-                bedrag = Double.Parse(bedragString);
-
+                bool test;
+                //this.Refresh();
+                Int32.TryParse(bedragString, out bedrag);
                 setDisplay(bedragString);
-                //Convert.ToString(input);
+                //}//Convert.ToString(input);
+
+                //String caseSwitch = arduino.getString();
+                switch (input)
+                {
+                    case "*KEY": 
+                        new Bon().Show();
+                        Thread.Sleep(1);
+                        this.Close();
+                        break;
+                    case "#KEY": // stoppen
+                        new Stoppen().Show();
+                        Thread.Sleep(1);
+                        this.Close();
+                        break;
+                }
             }
         }
         public void setDisplay(String value)
@@ -50,7 +66,7 @@ namespace GUI_Project_periode_3
         {
             new Opnemen().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -72,7 +88,7 @@ namespace GUI_Project_periode_3
         {
             new Transactie().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click_1(object sender, EventArgs e)

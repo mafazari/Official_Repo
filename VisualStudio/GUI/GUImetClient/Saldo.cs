@@ -17,6 +17,7 @@ namespace GUI_Project_periode_3
         public Saldo()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         public Saldo(double saldo)
@@ -35,12 +36,12 @@ namespace GUI_Project_periode_3
                 case "*KEY":
                     new Bedraginvoer().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "#KEY":
                     new Stoppen().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
             }
         }
@@ -49,14 +50,14 @@ namespace GUI_Project_periode_3
         {
             new Opnemen().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             new Stoppen().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)

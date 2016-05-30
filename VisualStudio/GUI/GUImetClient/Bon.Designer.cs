@@ -141,7 +141,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(252, 169);
             this.button2.TabIndex = 11;
-            this.button2.Text = "Nee [✓]";
+            this.button2.Text = "Nee [X]";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // Bon
@@ -155,6 +155,7 @@
             this.Name = "Bon";
             this.Text = "Form8";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Bon_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

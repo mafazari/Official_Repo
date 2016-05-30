@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace GUI_Project_periode_3
 {
@@ -16,6 +17,27 @@ namespace GUI_Project_periode_3
         public Bon()
         {
             InitializeComponent();
+            Cursor.Hide();
+        }
+
+        private void Bon_Load(object sender, EventArgs e)
+        {
+            ArduinoData ad = new ArduinoData();
+            //Printer print = new Printer();                      //????????????????????
+            String caseString = ad.getString();
+            switch (caseString)
+            {
+                case "*KEY":                                    //print bon
+                    new DankU().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
+                    break;
+                case "#KEY":
+                    new DankU().Show();
+                    Thread.Sleep(1);
+                    this.Hide();
+                    break;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

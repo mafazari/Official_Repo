@@ -17,14 +17,16 @@ namespace GUI_Project_periode_3
     public partial class DankU : Form
     {
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
         public DankU()
         {
             InitializeComponent();
+            Cursor.Hide();
             //timer.Tick += new EventHandler();
             //timer.Interval = 6000;
             //timer.Start();
 
-           // if (timer.Tick == true)
+            // if (timer.Tick == true)
 
             //{
 

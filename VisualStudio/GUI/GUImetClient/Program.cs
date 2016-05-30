@@ -664,6 +664,7 @@ public class Hash
         bool status = false;
         HTTPget temporary = new HTTPget();
         string Hash = makeHash(RekeningIDcv, pincodecv);
+        //Error.show(Hash);
         if (Hash == temporary.getHash(RekeningID))
         {
             status = true;

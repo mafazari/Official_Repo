@@ -15,10 +15,21 @@ namespace GUI_Project_periode_3
 {
     public partial class PinInvoer : Form
     {
+        string pasID;
+        string rekeningID;
+        string klantID;
+
         public PinInvoer()
         {   
             InitializeComponent();
-            
+            Cursor.Hide();
+        }
+
+        public void giveInfo(string[] x)
+        {
+            pasID = x[0];
+            rekeningID = x[1];
+            klantID = x[2];
         }
 
         SerialPort pininv = ArduinoClass.getPort();
@@ -29,6 +40,7 @@ namespace GUI_Project_periode_3
             HTTPget httpget = new HTTPget();
             Hash security = new Hash();
             Boolean pinCorrect = false;
+            int attempt = 0;
             //bool EE = true;
 
             this.Show();
@@ -69,33 +81,48 @@ namespace GUI_Project_periode_3
 
                     else if (input.Contains("CKEY"))
                     {
+                        //pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
                         clearall();
                         insertedDigits = 0;
                     }
-                    else if (input.Contains("*KEY")) // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
+                    /*else if (input.Contains("*KEY"))               
                     {
                         Error.show(pincode);
-                        new Home().Show();
+                        new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                         Thread.Sleep(1);
-                        this.Hide();
+                        this.Close();
                         break;
-                    }
+                    }*/
 
                     if (insertedDigits == 4)
                     {
                         if (input.Contains("*")) { confirmed = true; }
+                        //Error.show("rek:" + rekeningID + "\npin:" + pincode);
+                        if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
+                        {
+                            new Home().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        }
+                       
                     }
-                    String hashEmu = "MTEyNDg2NDkxMjM0";
-                    int rekEmu = 11248649;
-                    int pinEmu = Convert.ToInt32(pincode);
-
-                    if (security.makeHash(rekEmu, pinEmu) == hashEmu)                  //missing pinCorrect checker
+                   /* if (insertedDigits == 4)
                     {
-                        new Home().Show();
-                        Thread.Sleep(1);
-                        this.Hide();
-                        break;
-                    } 
+                         if(security.checkHash(rekeningID, pincode) == true)
+                        {
+                            attempt++;
+                            Error.show("Pin incorrect. Attempt #:" + attempt);
+                            clearall();
+                            insertedDigits = 0;
+                            pincode = "";
+                        }
+                    } */
+                    //String hashEmu = "MTEyNDg2NDkxMjM0";
+                    // int rekEmu = 11248649;
+                    //int pinEmu = Convert.ToInt32(pincode);
+                    int rek = Convert.ToInt32(rekeningID);
+                    int pin = Convert.ToInt32(pincode);
                 }
                 
             }
@@ -136,7 +163,7 @@ namespace GUI_Project_periode_3
         {
             button1.Text = ArduinoClass.strInput();
             new Home().Show();
-            this.Hide();
+            this.Close();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -213,7 +240,7 @@ namespace GUI_Project_periode_3
 
                     new Home().Show();
                     Thread.Sleep(1);
-                    this.Hide();  
+                    this.Close();  
 
                 }
         }

@@ -18,11 +18,10 @@ namespace GUI_Project_periode_3
 
     public partial class Home : Form
     {
-
-  
         public Home()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,22 +37,22 @@ namespace GUI_Project_periode_3
                 case "AKEY":
                     new Opnemen().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "BKEY":
                     new Saldo().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "CKEY":
                     new DankU().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "#KEY" :
                     new Stoppen().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
             }
         }

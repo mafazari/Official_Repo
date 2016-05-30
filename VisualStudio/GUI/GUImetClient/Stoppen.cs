@@ -17,6 +17,7 @@ namespace GUI_Project_periode_3
         public Stoppen()
         {
             InitializeComponent();
+            Cursor.Hide();
         }
 
         public void Form9_Load(object sender, EventArgs e)
@@ -29,12 +30,12 @@ namespace GUI_Project_periode_3
                 case "*KEY":
                     new DankU().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
                 case "#KEY":
                     new Home().Show();
                     Thread.Sleep(1);
-                    this.Hide();
+                    this.Close();
                     break;
             }
         }
@@ -43,7 +44,7 @@ namespace GUI_Project_periode_3
         {
             new DankU().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

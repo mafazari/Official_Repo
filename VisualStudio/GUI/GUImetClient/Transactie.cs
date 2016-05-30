@@ -17,6 +17,26 @@ namespace GUI_Project_periode_3
         public Transactie()
         {
             InitializeComponent();
+            Cursor.Hide();
+        }
+
+        private void Transactie_Load(object sender, EventArgs e)
+        {
+            ArduinoData ad = new ArduinoData();
+            String caseString = ad.getString();
+            switch (caseString)
+            {
+                case "*KEY": //gaat naar bon scherm
+                    new Bon().Show();
+                    Thread.Sleep(1);
+                    this.Close();
+                    break;
+                case "#KEY": //geen bon
+                    new DankU().Show();
+                    Thread.Sleep(1);
+                    this.Close();
+                    break;
+            }
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -28,14 +48,14 @@ namespace GUI_Project_periode_3
         {
             new DankU().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             new DankU().Show();
             Thread.Sleep(1);
-            this.Hide();
+            this.Close();
         }
     }
 }
