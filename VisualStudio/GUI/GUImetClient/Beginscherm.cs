@@ -74,11 +74,11 @@ namespace GUImetClient
                     }
                     //pinInvoer.Show();
                 }
-                if (!httpget.getActiefStand(pasID))
+               /* if (!httpget.getActiefStand(pasID))
                 {
                     BlockScreen tmp = new BlockScreen();
                     break;
-                } 
+                } */
                 pinInvoer.Show();
                 
                 Thread.Sleep(1);

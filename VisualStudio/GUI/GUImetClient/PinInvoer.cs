@@ -53,78 +53,86 @@ namespace GUI_Project_periode_3
             {
                 int insertedDigits = 0;
                 Boolean confirmed = false;
-                while (confirmed == false)
+                String input = "";
+
+                if (!input.Contains("AKEY") || !input.Contains("BKEY") || !input.Contains("$KEY") || !input.Contains("#KEY"))
                 {
-                    String input = arduino.getString();
-                    if (checkInput(input) == true && insertedDigits < 4)
-                    {
-                        insertedDigits++;
-                        switch (insertedDigits)
+                     while (confirmed == false)
                         {
-                            case 1:
-                                label3.Text = "*";
-                                break;
-                            case 2:
-                                label4.Text = "*";
-                                break;
-                            case 3:
-                                label5.Text = "*";
-                                break;
-                            case 4:
-                                label6.Text = "*";
-                                break;
+                        input = arduino.getString();
+
+                        if (checkInput(input) == true && insertedDigits < 4)
+                        {
+                            insertedDigits++;
+                            switch (insertedDigits)
+                            {
+                                case 1:
+                                    label3.Text = "*";
+                                    break;
+                                case 2:
+                                    label4.Text = "*";
+                                    break;
+                                case 3:
+                                    label5.Text = "*";
+                                    break;
+                                case 4:
+                                    label6.Text = "*";
+                                    break;
+                            }
+                            this.Refresh();
+                            pincode += input.ElementAt(0);
+                            //Error.show(pincode);
                         }
-                        this.Refresh();
-                        pincode += input.ElementAt(0);
-                        //Error.show(pincode);
-                    }
 
-                    else if (input.Contains("CKEY"))
-                    {
-                        //pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
-                        clearall();
-                        insertedDigits = 0;
-                    }
-                    /*else if (input.Contains("*KEY"))               
-                    {
-                        Error.show(pincode);
-                        new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
-                        Thread.Sleep(1);
-                        this.Close();
-                        break;
-                    }*/
-
-                    if (insertedDigits == 4)
-                    {
-                        if (input.Contains("*")) { confirmed = true; }
-                        //Error.show("rek:" + rekeningID + "\npin:" + pincode);
-                        if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
+                        
+                        /*else if (input.Contains("*KEY"))               
                         {
-                            new Home().Show();
+                            Error.show(pincode);
+                            new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                             Thread.Sleep(1);
                             this.Close();
                             break;
-                        }
-                       
-                    }
-                   /* if (insertedDigits == 4)
-                    {
-                         if(security.checkHash(rekeningID, pincode) == true)
+                        }*/
+
+                        if (insertedDigits == 4)
                         {
-                            attempt++;
-                            Error.show("Pin incorrect. Attempt #:" + attempt);
-                            clearall();
-                            insertedDigits = 0;
-                            pincode = "";
+                            if (input.Contains("*")) { confirmed = true; }
+                            //Error.show("rek:" + rekeningID + "\npin:" + pincode);
+                            //Error.show(security.makeHash(11248649, 1234));
+                            if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
+                            {
+                                new Home().Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                                break;
+                            } 
+
                         }
-                    } */
-                    //String hashEmu = "MTEyNDg2NDkxMjM0";
-                    // int rekEmu = 11248649;
-                    //int pinEmu = Convert.ToInt32(pincode);
-                    int rek = Convert.ToInt32(rekeningID);
-                    int pin = Convert.ToInt32(pincode);
+                        /* if (insertedDigits == 4)
+                         {
+                              if(security.checkHash(rekeningID, pincode) == true)
+                             {
+                                 attempt++;
+                                 Error.show("Pin incorrect. Attempt #:" + attempt);
+                                 clearall();
+                                 insertedDigits = 0;
+                                 pincode = "";
+                             }
+                         } */
+                        //String hashEmu = "MTEyNDg2NDkxMjM0";
+                        // int rekEmu = 11248649;
+                        //int pinEmu = Convert.ToInt32(pincode);
+                        int rek = Convert.ToInt32(rekeningID);
+                        int pin = Convert.ToInt32(pincode);
+                    }
                 }
-                
+                if (input.Contains("CKEY"))
+                {
+                    pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
+                    clearall();
+                    insertedDigits = 0;
+                }
+
             }
         }
         private void fillarr(Label[] lblarr)

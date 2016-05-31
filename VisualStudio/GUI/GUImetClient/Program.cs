@@ -12,6 +12,7 @@ using DYMO.Label.Framework;
 using System.Timers;
 using GUImetClient;
 using GUI_Project_periode_3;
+using System.Net;
 
 namespace GUI_Project_periode_3
 {
@@ -167,7 +168,7 @@ namespace GUI_Project_periode_3
         }
         public String getKlantID(string s)
         {
-            String location = String.Concat("/api/Pass/", s);
+            String location = String.Concat("api/Pass/", s);
             return getKlantIDthrougPasID(location).Result;
         }
         public Rekening getRekening(string s)
@@ -178,7 +179,7 @@ namespace GUI_Project_periode_3
         }
         public String getHash(String RekeningID)
         {
-            String loc = String.Concat("/api/rekenings/", RekeningID);
+            String loc = String.Concat("api/rekenings/", RekeningID);
             Rekening result = getRekeningData(loc).Result;
             return result.Hash;
         }
@@ -186,7 +187,8 @@ namespace GUI_Project_periode_3
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET THE KLANT ID
@@ -209,7 +211,8 @@ namespace GUI_Project_periode_3
             String location = s;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // HTTP GET
@@ -233,7 +236,8 @@ namespace GUI_Project_periode_3
             String location = s;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // HTTP GET
@@ -256,7 +260,8 @@ namespace GUI_Project_periode_3
             String location = s;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // HTTP GET
@@ -279,7 +284,8 @@ namespace GUI_Project_periode_3
             String location = string.Concat("api/Pass/", ID);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // HTTP GET
@@ -302,7 +308,8 @@ namespace GUI_Project_periode_3
             String location = string.Concat("api/Pass/", ID);
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // HTTP GET
@@ -359,7 +366,8 @@ public class HTTPpost
         Int32.TryParse(RekeningID, out RekeningIDint);
         using (var client = new HttpClient())
         {
-            client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
@@ -380,7 +388,8 @@ public class HTTPpost
         String location = string.Concat("api/rekenings/", RekeningID.ToString());
         using (var client = new HttpClient())
         {
-            client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
@@ -403,7 +412,8 @@ public class HTTPpost
         String location = string.Concat("api/pass/", PasID.ToString());
         using (var client = new HttpClient())
         {
-            client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
@@ -424,7 +434,8 @@ public class HTTPpost
         String location = string.Concat("api/pass/", PasID.ToString());
         using (var client = new HttpClient())
         {
-            client.BaseAddress = new Uri("http://hrsqlapp.tk/WebApp/");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
@@ -669,7 +680,7 @@ public class Hash
         {
             status = true;
         }
-        else { }
+        //else { }
         return status;
 
     }
