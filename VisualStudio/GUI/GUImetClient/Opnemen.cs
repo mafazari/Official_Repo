@@ -9,41 +9,61 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using GUI_Project_periode_3;
+using System.IO.Ports;
 
 namespace GUI_Project_periode_3
 {
     public partial class Opnemen : Form
     {
+        //public int rekID;
+        public static string pasID;
+        public string klantID;
+
         public Opnemen()
         {
             InitializeComponent();
             Cursor.Hide();
         }
-        private void Form4_Load(object sender, EventArgs e)
+        private void Form4_Load(object sender, EventArgs e)//mitey order food i pone panja laba brb 30 mins ish
         {
             ArduinoData ad = new ArduinoData();
+            PinInvoer pinInvoer = new PinInvoer();
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
+            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), ad, pinInvoer.getPasID());
             String caseString = ad.getString();
-            String amount;
+
+            double amount;
+            int rekID = Convert.ToInt16(pinInvoer.getRekID());
+            pasID = pinInvoer.getPasID();
+            klantID = pinInvoer.getKlantID();
             switch (caseString)
             {
                 case "1KEY": //10 euro ---> httppost -10euro
+                    amount = 10;
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new Bon().Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "3KEY": //20 euro
+                    amount = 20;
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new Bon().Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "4KEY": //50 euro
+                    amount = 50;
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new Bon().Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "6KEY": //70 euro
+                    amount = 70;
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new Bon().Show();
                     Thread.Sleep(1);
                     this.Close();

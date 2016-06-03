@@ -22,7 +22,19 @@ namespace GUI_Project_periode_3
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            string pasID;
+            string klantID;
             ArduinoData arduino = new ArduinoData();
+            PinInvoer pinInvoer = new PinInvoer();
+            HTTPget httpget = new HTTPget();
+            HTTPpost httppost = new HTTPpost();
+            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), arduino, pinInvoer.getPasID());
+            String caseString = arduino.getString();
+
+            double amount;
+            int rekID = Convert.ToInt16(pinInvoer.getRekID());
+            pasID = pinInvoer.getPasID();
+            klantID = pinInvoer.getKlantID();
 
             int bedrag = 0;
             String bedragString = "";
@@ -41,7 +53,9 @@ namespace GUI_Project_periode_3
                 //String caseSwitch = arduino.getString();
                 switch (input)
                 {
-                    case "*KEY": 
+                    case "*KEY":
+                        amount = bedrag;
+                        httppost.UpdateBalans(rekID, (exec.saldo - amount));
                         new Bon().Show();
                         Thread.Sleep(1);
                         this.Close();

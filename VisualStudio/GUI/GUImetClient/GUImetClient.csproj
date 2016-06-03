@@ -89,12 +89,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PinError.Designer.cs" />
-    <Compile Include="Storten.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Storten.Designer.cs">
-      <DependentUpon>Storten.cs</DependentUpon>
-    </Compile>
     <Compile Include="PinInvoer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,9 +149,6 @@
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PinError.resx" />
-    <EmbeddedResource Include="Storten.resx">
-      <DependentUpon>Storten.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PinInvoer.resx">
       <DependentUpon>PinInvoer.cs</DependentUpon>
     </EmbeddedResource>

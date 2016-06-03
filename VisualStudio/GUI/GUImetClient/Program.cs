@@ -104,6 +104,10 @@ namespace GUI_Project_periode_3
             }
             return status;
         }
+        public void closePort(String s)
+        {
+            Arduino.Close();
+        }
         public static SerialPort getPort()
         {
             return Arduino;
@@ -463,7 +467,7 @@ public class Executer
     private HTTPpost uploadConnection = new HTTPpost();
     private Rekening rekening;
     private Boolean endOfSession = true;
-    private double saldo;
+    public double saldo;
 
     public Executer(string r, string u, ArduinoData a, string p)
     {
@@ -595,8 +599,8 @@ public class Executer
     public void checkSaldo()
     {
         Saldo saldoDisplay = new Saldo(saldo);
-        saldoDisplay.Show();
-        saldoDisplay.Refresh();
+        //saldoDisplay.Show();
+        //saldoDisplay.Refresh();
         while (true)
         {
             String input = arduino.getString();

@@ -15,6 +15,7 @@ using GUI_Project_periode_3;
 
 namespace GUI_Project_periode_3
 {
+    
 
     public partial class Home : Form
     {
@@ -28,23 +29,37 @@ namespace GUI_Project_periode_3
         {            
             //ArduinoClass bootup = new ArduinoClass();
             //bootup.makePort("COM6");
+            string pasID;
+            string klantID;
             ArduinoData ad = new ArduinoData();
+            PinInvoer pinInvoer = new PinInvoer();
+            HTTPget httpget = new HTTPget();
+            HTTPpost httppost = new HTTPpost();
+            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), ad, pinInvoer.getPasID());
+            String caseString = ad.getString();
+
+            double amount;
+            int rekID = Convert.ToInt16(pinInvoer.getRekID());
+            pasID = pinInvoer.getPasID();
+            klantID = pinInvoer.getKlantID();
 
 
             String caseSwitch = ad.getString();
             switch (caseSwitch)
             {
-                case "AKEY":
+                case "AKEY": //Geld opnemen
                     new Opnemen().Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
-                case "BKEY":
+                case "BKEY": //Saldo opvragen
                     new Saldo().Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
-                case "CKEY":
+                case "CKEY": //Snel 70 euro
+                    amount = 70;
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new DankU().Show();
                     Thread.Sleep(1);
                     this.Close();

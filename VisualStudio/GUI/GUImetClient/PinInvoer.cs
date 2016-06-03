@@ -15,9 +15,9 @@ namespace GUI_Project_periode_3
 {
     public partial class PinInvoer : Form
     {
-        string pasID;
-        string rekeningID;
-        string klantID;
+        public string pasID;
+        public string rekeningID;
+        public string klantID;
 
         public PinInvoer()
         {   
@@ -30,6 +30,21 @@ namespace GUI_Project_periode_3
             pasID = x[0];
             rekeningID = x[1];
             klantID = x[2];
+        }
+
+        public string getRekID()
+        {
+            return rekeningID;
+        }
+
+        public string getPasID()
+        {
+            return pasID;
+        }
+
+        public string getKlantID()
+        {
+            return klantID;
         }
 
         SerialPort pininv = ArduinoClass.getPort();
@@ -87,7 +102,7 @@ namespace GUI_Project_periode_3
                         
                         else if (input.Contains("*KEY"))               
                         {
-                            Error.show(pincode);
+                            //Error.show(pincode);
                             new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                             Thread.Sleep(1);
                             this.Close();
@@ -97,7 +112,7 @@ namespace GUI_Project_periode_3
                         if (insertedDigits == 4)
                         {
                             if (input.Contains("*")) { confirmed = true; }
-                            Error.show("rek:" + rekeningID + "\npin:" + pincode);
+                            //Error.show("rek:" + rekeningID + "\npin:" + pincode);
                             //Error.show(security.makeHash(11248649, 1234));
                             if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
                             {
@@ -120,7 +135,7 @@ namespace GUI_Project_periode_3
                              }
                          } */
                         //String hashEmu = "MTEyNDg2NDkxMjM0";
-                         int rekEmu = 11248649;
+                        //int rekEmu = 11248649;
                         //int pinEmu = Convert.ToInt32(pincode);
                         int rek = Convert.ToInt32(rekeningID);
                         int pin = Convert.ToInt32(pincode);

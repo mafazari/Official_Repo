@@ -23,6 +23,7 @@ namespace GUI_Project_periode_3
             InitializeComponent();
             Cursor.Hide();
             
+
             /*timer.Interval = 6000;
             timer.Start();
             timer.Tick += new EventHandler(gotoBeginScreen);
@@ -33,9 +34,19 @@ namespace GUI_Project_periode_3
 
             //}
         }
+        private void DankU_Load(object sender, EventArgs e)
+        {
+            gotoBeginScreen();
+        }
 
         private void gotoBeginScreen()
         {
+            ArduinoClass ac = new ArduinoClass();
+            this.Refresh();
+            this.Show();
+            this.Refresh();
+            System.Threading.Thread.Sleep(5000);
+            ac.closePort("COM6");
             new Beginscherm().Show();
             Thread.Sleep(1);
             this.Close();

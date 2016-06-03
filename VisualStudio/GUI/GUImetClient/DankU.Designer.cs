@@ -116,7 +116,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(633, 216);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Vergeet eventueel uw geld niet.";
+            this.label2.Text = "Vergeet eventueel uw geld en bon niet.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // timer1
@@ -135,6 +135,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DankU";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.DankU_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
