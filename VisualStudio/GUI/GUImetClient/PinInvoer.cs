@@ -85,19 +85,19 @@ namespace GUI_Project_periode_3
                         }
 
                         
-                        /*else if (input.Contains("*KEY"))               
+                        else if (input.Contains("*KEY"))               
                         {
                             Error.show(pincode);
                             new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                             Thread.Sleep(1);
                             this.Close();
                             break;
-                        }*/
+                        }
 
                         if (insertedDigits == 4)
                         {
                             if (input.Contains("*")) { confirmed = true; }
-                            //Error.show("rek:" + rekeningID + "\npin:" + pincode);
+                            Error.show("rek:" + rekeningID + "\npin:" + pincode);
                             //Error.show(security.makeHash(11248649, 1234));
                             if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
                             {
@@ -120,7 +120,7 @@ namespace GUI_Project_periode_3
                              }
                          } */
                         //String hashEmu = "MTEyNDg2NDkxMjM0";
-                        // int rekEmu = 11248649;
+                         int rekEmu = 11248649;
                         //int pinEmu = Convert.ToInt32(pincode);
                         int rek = Convert.ToInt32(rekeningID);
                         int pin = Convert.ToInt32(pincode);

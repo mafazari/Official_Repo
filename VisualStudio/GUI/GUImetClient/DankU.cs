@@ -16,21 +16,29 @@ namespace GUI_Project_periode_3
 {
     public partial class DankU : Form
     {
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        ///System.Timers.Timer timer = new System.Windows.Forms.Timer(6000);
 
         public DankU()
         {
             InitializeComponent();
             Cursor.Hide();
-            //timer.Tick += new EventHandler();
-            //timer.Interval = 6000;
-            //timer.Start();
-
+            
+            /*timer.Interval = 6000;
+            timer.Start();
+            timer.Tick += new EventHandler(gotoBeginScreen);
+            timer.Invoke();*/
             // if (timer.Tick == true)
 
             //{
 
             //}
+        }
+
+        private void gotoBeginScreen()
+        {
+            new Beginscherm().Show();
+            Thread.Sleep(1);
+            this.Close();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
