@@ -27,8 +27,7 @@ namespace GUI_Project_periode_3
             //Hash hash = new Hash();
             //Error.show(hash.makeHash(11248649, 1234));
             
-            //ArduinoClass AC = new ArduinoClass();
-            //AC.makePort("COM6");
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Beginscherm());
@@ -36,38 +35,33 @@ namespace GUI_Project_periode_3
     }
 }
 
+                                                                        //HAS TO BE UP TO DATE WITH WEBAPI
     public class Rekening
     {
-        public int RekeningNr { get; set; }
+        public int RekeningID { get; set; }
         public double Balans { get; set; }
-        public int RekeningType { get; set; }
-        public int KlantNr { get; set; }
         public String Hash { get; set; }
     }
     public class Transactie
     {
-        public int TransactieID { get; set; }
         public int RekeningID { get; set; }
         public double Bedrag { get; set; }
-        public string PasID { get; set; }
+        public string Locatie { get; set; }
     }
     public class Pas
     {
         public String PasID { get; set; }
-        public int RekeningNr { get; set; }
+        public int RekeningID { get; set; }
         public int KlantID { get; set; }
         public int Actief { get; set; }
-        public int Code { get; set; }
         public int FalsePin { get; set; }
 }
     public class Klant
     {
         public int KlantID { get; set; }
-        public String First_name { get; set; }
-        public String Last_name { get; set; }
-        public String Adres { get; set; }
-        public String Woonplaats { get; set; }
-        public String Contact { get; set; }
+        public String voornaam { get; set; }
+        public String achternaam { get; set; }
+        public String email { get; set; }
     }
 
     public class ArduinoClass
@@ -367,6 +361,7 @@ public class HTTPpost
     static async Task Transactie(string PasID, String RekeningID, double balans)
     {
         int RekeningIDint;
+        string locatie = "HollandBank-Locatie21";
         Int32.TryParse(RekeningID, out RekeningIDint);
         using (var client = new HttpClient())
         {
@@ -375,7 +370,7 @@ public class HTTPpost
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
-            var trans = new Transactie() { Bedrag = balans, PasID = PasID, RekeningID = RekeningIDint };
+            var trans = new Transactie() { Bedrag = balans, Locatie = locatie, RekeningID = RekeningIDint };
             HttpResponseMessage response = await client.PostAsJsonAsync("api/transacties", trans).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
@@ -421,7 +416,7 @@ public class HTTPpost
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
-            Pas incrementFalsePin = new Pas() { Actief = data.Actief, FalsePin = falsepinnr, KlantID = data.KlantID, PasID = PasID, RekeningNr = data.RekeningNr };
+            Pas incrementFalsePin = new Pas() { Actief = data.Actief, FalsePin = falsepinnr, KlantID = data.KlantID, PasID = PasID, RekeningID = data.RekeningID };
             HttpResponseMessage response = await client.PutAsJsonAsync(location, incrementFalsePin).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
@@ -443,7 +438,7 @@ public class HTTPpost
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
-            Pas incrementFalsePin = new Pas() { Actief = 0, FalsePin = data.FalsePin, KlantID = data.KlantID, PasID = PasID, RekeningNr = data.RekeningNr };
+            Pas incrementFalsePin = new Pas() { Actief = 0, FalsePin = data.FalsePin, KlantID = data.KlantID, PasID = PasID, RekeningID = data.RekeningID };
             HttpResponseMessage response = await client.PutAsJsonAsync(location, incrementFalsePin).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
@@ -679,9 +674,10 @@ public class Hash
         bool status = false;
         HTTPget temporary = new HTTPget();
         string Hash = makeHash(RekeningIDcv, pincodecv);
-        //Error.show(Hash);
+        Error.show(Hash);
         if (Hash == temporary.getHash(RekeningID))
         {
+            //Error.show(temporary.getHash(RekeningID));
             status = true;
         }
         //else { }

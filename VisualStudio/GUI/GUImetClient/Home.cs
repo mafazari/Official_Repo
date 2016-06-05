@@ -15,10 +15,19 @@ using GUI_Project_periode_3;
 
 namespace GUI_Project_periode_3
 {
-    
-
     public partial class Home : Form
     {
+        string pasID;
+        string klantID;
+        ArduinoData ad = new ArduinoData();
+        PinInvoer pinInvoer = new PinInvoer();
+        HTTPget httpget = new HTTPget();
+        HTTPpost httppost = new HTTPpost();
+        
+
+        double amount;
+        
+        
         public Home()
         {
             InitializeComponent();
@@ -26,26 +35,19 @@ namespace GUI_Project_periode_3
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
+            this.Refresh();        
             //ArduinoClass bootup = new ArduinoClass();
             //bootup.makePort("COM6");
-            string pasID;
-            string klantID;
-            ArduinoData ad = new ArduinoData();
-            PinInvoer pinInvoer = new PinInvoer();
-            HTTPget httpget = new HTTPget();
-            HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), ad, pinInvoer.getPasID());
-            String caseString = ad.getString();
-
-            double amount;
+            String caseSwitch = ad.getString();
             int rekID = Convert.ToInt16(pinInvoer.getRekID());
             pasID = pinInvoer.getPasID();
             klantID = pinInvoer.getKlantID();
 
-
-            String caseSwitch = ad.getString();
-            switch (caseSwitch)
+            
+          
+            switch (caseSwitch)                                         //IF !ABC#, do nothing MISSING
             {
                 case "AKEY": //Geld opnemen
                     new Opnemen().Show();
@@ -64,7 +66,7 @@ namespace GUI_Project_periode_3
                     Thread.Sleep(1);
                     this.Close();
                     break;
-                case "#KEY" :
+                case "#KEY" : //stoppen
                     new Stoppen().Show();
                     Thread.Sleep(1);
                     this.Close();

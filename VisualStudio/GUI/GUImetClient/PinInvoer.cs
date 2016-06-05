@@ -121,6 +121,10 @@ namespace GUI_Project_periode_3
                                 this.Close();
                                 break;
                             } 
+                            //else if (security.checkHash(rekeningID, pincode) == false)
+                            {
+                               // Error.show("Incorrect Hash");
+                            }
 
                         }
                         /* if (insertedDigits == 4)

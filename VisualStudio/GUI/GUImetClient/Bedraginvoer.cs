@@ -29,7 +29,7 @@ namespace GUI_Project_periode_3
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), arduino, pinInvoer.getPasID());
-            String caseString = arduino.getString();
+            //String caseString = arduino.getString();
 
             double amount;
             int rekID = Convert.ToInt16(pinInvoer.getRekID());
