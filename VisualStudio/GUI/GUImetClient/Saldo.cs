@@ -22,13 +22,21 @@ namespace GUI_Project_periode_3
 
         public Saldo(double saldo)
         {
-           //InitializeComponent();
+           InitializeComponent();
             textBox1.Text = saldo.ToString();
         }
 
         private void Form6_Load(object sender, EventArgs e)
         {
+            //PinInvoer getter = new PinInvoer();
+            string rekeningID = Home.rekeningID;
+            
             ArduinoData ad = new ArduinoData();
+            HTTPget httpget = new HTTPget();
+            int balans = httpget.getRekening(rekeningID).Balans;
+            string balansString = Convert.ToString(balans);
+            textBox1.Text = balansString + " €";
+
             String caseString = ad.getString();
 
             switch (caseString)

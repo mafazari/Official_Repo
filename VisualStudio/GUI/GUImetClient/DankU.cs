@@ -46,7 +46,7 @@ namespace GUI_Project_periode_3
             this.Show();
             this.Refresh();
             System.Threading.Thread.Sleep(5000);
-            ac.closePort("COM6");
+            ac.closePort("COM6");                   //CLOSE PORT
             new Beginscherm().Show();
             Thread.Sleep(1);
             this.Close();

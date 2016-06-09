@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO.Ports;
 using System.Threading;
+using GUImetClient;
 
 namespace GUI_Project_periode_3
 {
@@ -30,6 +31,7 @@ namespace GUI_Project_periode_3
             pasID = x[0];
             rekeningID = x[1];
             klantID = x[2];
+            //Error.show(rekeningID + "," + klantID + "," + pasID);
         }
 
         public string getRekID()
@@ -51,11 +53,14 @@ namespace GUI_Project_periode_3
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            //Executer ex = new Executer();
+            //Beginscherm bs = new Beginscherm();
             ArduinoData arduino = new ArduinoData();
             HTTPget httpget = new HTTPget();
             Hash security = new Hash();
             Boolean pinCorrect = false;
             int attempt = 0;
+            
             //bool EE = true;
 
             this.Show();
@@ -68,7 +73,8 @@ namespace GUI_Project_periode_3
             {
                 int insertedDigits = 0;
                 Boolean confirmed = false;
-                String input = "";
+                String input= "";
+                
 
                 if (!input.Contains("AKEY") || !input.Contains("BKEY") || !input.Contains("$KEY") || !input.Contains("#KEY"))
                 {
@@ -100,21 +106,21 @@ namespace GUI_Project_periode_3
                         }
 
                         
-                        else if (input.Contains("*KEY"))               
+                        /*else if (input.Contains("*KEY"))               
                         {
                             //Error.show(pincode);
                             new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
                             Thread.Sleep(1);
                             this.Close();
                             break;
-                        }
+                        }*/
 
                         if (insertedDigits == 4)
                         {
                             if (input.Contains("*")) { confirmed = true; }
                             //Error.show("rek:" + rekeningID + "\npin:" + pincode);
                             //Error.show(security.makeHash(11248649, 1234));
-                            if (security.checkHash(rekeningID, pincode) == true)                    //NEEDS FIXING            
+                            if (security.checkHash(rekeningID, pincode) == true)          
                             {
                                 new Home().Show();
                                 Thread.Sleep(1);
@@ -143,15 +149,15 @@ namespace GUI_Project_periode_3
                         //int pinEmu = Convert.ToInt32(pincode);
                         int rek = Convert.ToInt32(rekeningID);
                         int pin = Convert.ToInt32(pincode);
+
+                        if (input.Contains("CKEY")) //Clear all KEY
+                        {
+                            pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
+                            clearall();
+                            insertedDigits = 0;
+                        }
                     }
                 }
-                if (input.Contains("CKEY"))
-                {
-                    pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
-                    clearall();
-                    insertedDigits = 0;
-                }
-
             }
         }
         private void fillarr(Label[] lblarr)

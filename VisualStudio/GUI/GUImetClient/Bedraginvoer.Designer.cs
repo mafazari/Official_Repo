@@ -161,6 +161,7 @@
             this.bedragInvoerlbl.Size = new System.Drawing.Size(633, 103);
             this.bedragInvoerlbl.TabIndex = 13;
             this.bedragInvoerlbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.bedragInvoerlbl.TextChanged += new System.EventHandler(this.bedragInvoerlbl_TextChanged);
             // 
             // Bedraginvoer
             // 

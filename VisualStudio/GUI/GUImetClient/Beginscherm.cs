@@ -38,6 +38,7 @@ namespace GUImetClient
             }
 
             PinInvoer pinInvoer = new PinInvoer();
+
             Home home = new Home();
             ArduinoData arduino = new ArduinoData();
             Hash security = new Hash();
@@ -68,8 +69,12 @@ namespace GUImetClient
                         KlantID = pasInformation[2];
                         rekeningID = pasInformation[1];
                         pasID = pasInformation[0];
+                        //Error.show(rekeningID + "," + KlantID + "," + pasID);
                         //Error.show("PasID: " + pasID + "\nRekID: " + rekeningID + "\nKlantID: " + KlantID);
                         pinInvoer.giveInfo(pasInformation);
+                        home.giveInfo(pasInformation);
+                        
+                        executer = new Executer(rekeningID, KlantID, arduino, pasID);
                         break;
                     }
                     //pinInvoer.Show();

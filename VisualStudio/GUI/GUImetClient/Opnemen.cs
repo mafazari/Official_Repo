@@ -25,19 +25,19 @@ namespace GUI_Project_periode_3
             InitializeComponent();
             Cursor.Hide();
         }
-        private void Form4_Load(object sender, EventArgs e)//mitey order food i pone panja laba brb 30 mins ish
+        private void Form4_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
-            PinInvoer pinInvoer = new PinInvoer();
+            //PinInvoer pinInvoer = new PinInvoer();
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
-            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), ad, pinInvoer.getPasID());
+            Executer exec = new Executer(Home.rekeningID, Home.klantID, ad, Home.pasID);
             String caseString = ad.getString();
 
-            double amount;
-            int rekID = Convert.ToInt16(pinInvoer.getRekID());
-            pasID = pinInvoer.getPasID();
-            klantID = pinInvoer.getKlantID();
+            int amount;
+            int rekID = Convert.ToInt32(Home.rekeningID);
+            pasID = Home.pasID;
+            klantID = Home.klantID;
             switch (caseString)
             {
                 case "1KEY": //10 euro ---> httppost -10euro

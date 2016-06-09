@@ -13,6 +13,11 @@ using System.Timers;
 using GUImetClient;
 using GUI_Project_periode_3;
 using System.Net;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
+
+//using JSON.Net;
+//using System.Web.Script.Serialization.JavaScriptSerializer;
 
 namespace GUI_Project_periode_3
 {
@@ -39,7 +44,7 @@ namespace GUI_Project_periode_3
     public class Rekening
     {
         public int RekeningID { get; set; }
-        public double Balans { get; set; }
+        public int Balans { get; set; }
         public String Hash { get; set; }
     }
     public class Transactie
@@ -166,26 +171,36 @@ namespace GUI_Project_periode_3
         }
         public String getKlantID(string s)
         {
-            String location = String.Concat("api/Pass/", s);
+            String location = String.Concat("api/pass/", s);
             return getKlantIDthrougPasID(location).Result;
         }
         public Rekening getRekening(string s)
         {
+            //Error.show("S: " +s);
             String loc = String.Concat("api/rekenings/", s);
             Rekening result = getRekeningData(loc).Result;
+            //result = JsonConvert.DeserializeObject<Rekening>(loc);
+            int Balans = result.Balans;
+
             return result;
-        }
+        
+        //double testbalans = result.Balans;
+        //string hash = result.Hash;
+            
+        } 
         public String getHash(String RekeningID)
         {
             String loc = String.Concat("api/rekenings/", RekeningID);
             Rekening result = getRekeningData(loc).Result;
+        //Error.show(result.Hash);
             return result.Hash;
         }
         static async Task<String> getKlantIDthrougPasID(String s)
         {
-            using (var client = new HttpClient())
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                
                 client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -207,9 +222,10 @@ namespace GUI_Project_periode_3
         static async Task<Klant> GetKlantData(String s)
         {
             String location = s;
-            using (var client = new HttpClient())
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                
                 client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -232,9 +248,10 @@ namespace GUI_Project_periode_3
         static async Task<Rekening> getRekeningData(string s)
         {
             String location = s;
-            using (var client = new HttpClient())
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                
                 client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -256,9 +273,10 @@ namespace GUI_Project_periode_3
         static async Task<Pas> getPasData(string s)
         {
             String location = s;
-            using (var client = new HttpClient())
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                
                 client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -280,9 +298,9 @@ namespace GUI_Project_periode_3
         static async Task<Pas> getPinData(string ID)
         {
             String location = string.Concat("api/Pass/", ID);
-            using (var client = new HttpClient())
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
                 client.BaseAddress = new Uri("https://hrsqlapp.tk/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -304,31 +322,31 @@ namespace GUI_Project_periode_3
         static async Task<Pas> getActiefStandData(string ID)
         {
             String location = string.Concat("api/Pass/", ID);
-            using (var client = new HttpClient())
-            {
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-                client.BaseAddress = new Uri("https://hrsqlapp.tk/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                // HTTP GET
-                HttpResponseMessage response = await client.GetAsync(location).ConfigureAwait(false);
-                if (response.IsSuccessStatusCode)
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
                 {
-                    Pas Actief = await response.Content.ReadAsAsync<Pas>();
-                    return Actief;
-                }
-                else
-                {
-                    Pas reject = new Pas();
-                    return reject;
-                }
+                    client.BaseAddress = new Uri("https://hrsqlapp.tk/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    // HTTP GET
+                    HttpResponseMessage response = await client.GetAsync(location).ConfigureAwait(false);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Pas Actief = await response.Content.ReadAsAsync<Pas>();
+                        return Actief;
+                    }
+                    else
+                    {
+                        Pas reject = new Pas();
+                        return reject;
+                    }
 
             }
         }
     }
 public class HTTPpost
 {
-    public void transaction(string PasID, String RekeningID, double Balans)
+    public void transaction(string PasID, String RekeningID, int Balans)
     {
         Transactie(PasID, RekeningID, Balans).Wait();
     }
@@ -354,18 +372,18 @@ public class HTTPpost
             incrementFalsePin(PasID, uploaddata, nrfalsepin).Wait();
         }
     }
-    public void UpdateBalans(int RekeningID, double balans)
+    public void UpdateBalans(int RekeningID, int balans)
     {
         NieuwBalans(RekeningID, balans).Wait();
     }
-    static async Task Transactie(string PasID, String RekeningID, double balans)
+    static async Task Transactie(string PasID, String RekeningID, int balans)
     {
         int RekeningIDint;
         string locatie = "HollandBank-Locatie21";
         Int32.TryParse(RekeningID, out RekeningIDint);
-        using (var client = new HttpClient())
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+        using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -382,12 +400,15 @@ public class HTTPpost
             }
         }
     }
-    static async Task NieuwBalans(int RekeningID, double balans)
+    static async Task NieuwBalans(int RekeningID, int balans)
     {
+        string rekStr = Convert.ToString(RekeningID);
+        string balansStr = Convert.ToString(balans);
+        //Error.show("Rekening nr: " + rekStr + "\nBalans :" + balansStr);
         String location = string.Concat("api/rekenings/", RekeningID.ToString());
-        using (var client = new HttpClient())
-        {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+        using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
+        { 
             client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -395,7 +416,9 @@ public class HTTPpost
             HTTPget tmp = new HTTPget();
             Rekening trans = tmp.getRekening(RekeningID.ToString());
             trans.Balans = balans;
+
             HttpResponseMessage response = await client.PutAsJsonAsync(location, trans).ConfigureAwait(false);
+            //Error.show(location, balans.ToString());
             if (response.IsSuccessStatusCode)
             {
                 //Error.show("Succeeded", "Succeeded");
@@ -409,9 +432,9 @@ public class HTTPpost
     static async Task incrementFalsePin(String PasID, Pas data, int falsepinnr)
     {
         String location = string.Concat("api/pass/", PasID.ToString());
-        using (var client = new HttpClient())
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+        using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -431,9 +454,9 @@ public class HTTPpost
     static async Task BlockCard(String PasID, Pas data)
     {
         String location = string.Concat("api/pass/", PasID.ToString());
-        using (var client = new HttpClient())
+        System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+        using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
         {
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             client.BaseAddress = new Uri("https://hrsqlapp.tk/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -462,7 +485,7 @@ public class Executer
     private HTTPpost uploadConnection = new HTTPpost();
     private Rekening rekening;
     private Boolean endOfSession = true;
-    public double saldo;
+    public int saldo;
 
     public Executer(string r, string u, ArduinoData a, string p)
     {
@@ -470,6 +493,7 @@ public class Executer
         this.userName = u;
         this.arduino = a;
         this.pasID = p;
+        //Error.show(rekeningID);
         this.rekening = downloadConnection.getRekening(rekeningID);
         this.saldo = rekening.Balans;
     }
@@ -503,7 +527,7 @@ public class Executer
         Boolean printTicket = false;
         Boolean cancelled = false;
         Boolean goBack = true;
-        double amount = 0;
+        int amount = 0;
         String input;
 
         while (goBack == true)
@@ -674,10 +698,11 @@ public class Hash
         bool status = false;
         HTTPget temporary = new HTTPget();
         string Hash = makeHash(RekeningIDcv, pincodecv);
-        Error.show(Hash);
+        //Error.show(Hash);
+        //Error.show(temporary.getHash(RekeningID));
         if (Hash == temporary.getHash(RekeningID))
         {
-            //Error.show(temporary.getHash(RekeningID));
+            //
             status = true;
         }
         //else { }

@@ -17,36 +17,73 @@ namespace GUI_Project_periode_3
 {
     public partial class Home : Form
     {
-        string pasID;
-        string klantID;
+        
+        public static string pasID;                                                                         //SOLUTION FOR STATIC SHIT-------> CONSTRUCTORS? vb. void Home(string pasID, string klantID, string rekeningID);
+        public static string klantID;
+        public static string rekeningID;
         ArduinoData ad = new ArduinoData();
         PinInvoer pinInvoer = new PinInvoer();
         HTTPget httpget = new HTTPget();
         HTTPpost httppost = new HTTPpost();
-        
-
         double amount;
-        
-        
+        //Error.show(rekeningID);
+
+        public void giveInfo(string[] x)
+        {
+            Home.pasID = x[0];
+            Home.rekeningID = x[1];
+            Home.klantID = x[2];
+            
+            //Error.show("HOMESCREEN INFO"  + "\nRekeningID: " + rekeningID + "\nKlantID: " + klantID+ "\npasID: " + pasID);
+        }
+
+        public void setRekID(string r)
+        {
+            Home.rekeningID = r;
+            //Error.show(Home.rekeningID);
+        }
+
+        public string getRekID()
+        {
+            return Home.rekeningID;
+            //Error.show(rekeningID);
+        }
+
+        public string getPasID()
+        {
+            return Home.pasID;
+            //Error.show(pasID);
+        }
+
+        public string getKlantID()
+        {
+            return Home.klantID;
+            //Error.show(klantID);
+        }
+
+
+
+
         public Home()
         {
             InitializeComponent();
             Cursor.Hide();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
-            this.Refresh();        
+            //Error.show(getRekID());
+            int rekID = Convert.ToInt32(getRekID());
+            //Error.show("HOMESCREEN Form1_Load INFO" + "\nRekeningID string: " + getRekID() + "\nRekeningID int: " + rekID + "\nKlantID: " + getKlantID() + "\npasID: " + getPasID());
+            this.Refresh();
             //ArduinoClass bootup = new ArduinoClass();
             //bootup.makePort("COM6");
-            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), ad, pinInvoer.getPasID());
+            //Error.show(pinInvoer.getRekID());
+            //Executer exec = new Executer(rekeningID, klantID, ad, pasID);
             String caseSwitch = ad.getString();
-            int rekID = Convert.ToInt16(pinInvoer.getRekID());
-            pasID = pinInvoer.getPasID();
-            klantID = pinInvoer.getKlantID();
-
             
-          
+            //pasID = pinInvoer.getPasID();
+            //klantID = pinInvoer.getKlantID();
             switch (caseSwitch)                                         //IF !ABC#, do nothing MISSING
             {
                 case "AKEY": //Geld opnemen
@@ -61,7 +98,7 @@ namespace GUI_Project_periode_3
                     break;
                 case "CKEY": //Snel 70 euro
                     amount = 70;
-                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                    //httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new DankU().Show();
                     Thread.Sleep(1);
                     this.Close();
@@ -139,5 +176,6 @@ namespace GUI_Project_periode_3
             Executer ex = new Executer("11248648", "1", new ArduinoData(), "68,4,247,53,130");
             ex.checkSaldo();
         }
+        
     }
 }

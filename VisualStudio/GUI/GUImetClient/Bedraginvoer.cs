@@ -28,13 +28,16 @@ namespace GUI_Project_periode_3
             PinInvoer pinInvoer = new PinInvoer();
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
-            Executer exec = new Executer(pinInvoer.getRekID(), pinInvoer.getKlantID(), arduino, pinInvoer.getPasID());
+            Executer exec = new Executer(Home.rekeningID, Home.klantID, arduino, Home.pasID);
             //String caseString = arduino.getString();
 
-            double amount;
-            int rekID = Convert.ToInt16(pinInvoer.getRekID());
-            pasID = pinInvoer.getPasID();
-            klantID = pinInvoer.getKlantID();
+            int amount;
+            int rekID = Convert.ToInt32(Home.rekeningID);
+            pasID = Home.pasID;
+            klantID = Home.klantID;
+
+            string ssaldo = Convert.ToString(exec.saldo);
+            //Error.show(ssaldo);
 
             int bedrag = 0;
             String bedragString = "";
@@ -42,8 +45,12 @@ namespace GUI_Project_periode_3
             while (true)
             {
                 input = arduino.getString();
-
-                bedragString += input.ElementAt(0);
+                if(!input.Contains("*KEY")) //missing other buttons
+                {
+                    this.Refresh();
+                    bedragString += input.ElementAt(0);
+                }
+                
                 bool test;
                 //this.Refresh();
                 Int32.TryParse(bedragString, out bedrag);
@@ -55,6 +62,9 @@ namespace GUI_Project_periode_3
                 {
                     case "*KEY":
                         amount = bedrag;
+                        //Error.show(amount);
+                        this.Refresh();
+                        
                         httppost.UpdateBalans(rekID, (exec.saldo - amount));
                         new Bon().Show();
                         Thread.Sleep(1);
@@ -126,6 +136,11 @@ namespace GUI_Project_periode_3
         }
 
         private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bedragInvoerlbl_TextChanged(object sender, EventArgs e)
         {
 
         }
