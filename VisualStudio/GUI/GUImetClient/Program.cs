@@ -566,7 +566,7 @@ public class Executer
             }
             if (amount > saldo && amount != 0)
             {
-                PinError pinError = new PinError();
+                //PinError pinError = new PinError();
                 cancelled = true;
             }
             if (cancelled == true)
@@ -698,14 +698,11 @@ public class Hash
         bool status = false;
         HTTPget temporary = new HTTPget();
         string Hash = makeHash(RekeningIDcv, pincodecv);
-        //Error.show(Hash);
-        //Error.show(temporary.getHash(RekeningID));
         if (Hash == temporary.getHash(RekeningID))
         {
-            //
             status = true;
         }
-        //else { }
+        
         return status;
 
     }

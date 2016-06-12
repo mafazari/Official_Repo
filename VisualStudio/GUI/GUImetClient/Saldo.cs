@@ -27,8 +27,7 @@ namespace GUI_Project_periode_3
         }
 
         private void Form6_Load(object sender, EventArgs e)
-        {
-            //PinInvoer getter = new PinInvoer();
+        { 
             string rekeningID = Home.rekeningID;
             
             ArduinoData ad = new ArduinoData();

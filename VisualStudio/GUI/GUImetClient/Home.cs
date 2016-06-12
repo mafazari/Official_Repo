@@ -25,7 +25,7 @@ namespace GUI_Project_periode_3
         PinInvoer pinInvoer = new PinInvoer();
         HTTPget httpget = new HTTPget();
         HTTPpost httppost = new HTTPpost();
-        double amount;
+        int amount;
         //Error.show(rekeningID);
 
         public void giveInfo(string[] x)
@@ -72,18 +72,12 @@ namespace GUI_Project_periode_3
 
         public void Form1_Load(object sender, EventArgs e)
         {
-            //Error.show(getRekID());
             int rekID = Convert.ToInt32(getRekID());
             //Error.show("HOMESCREEN Form1_Load INFO" + "\nRekeningID string: " + getRekID() + "\nRekeningID int: " + rekID + "\nKlantID: " + getKlantID() + "\npasID: " + getPasID());
             this.Refresh();
-            //ArduinoClass bootup = new ArduinoClass();
-            //bootup.makePort("COM6");
-            //Error.show(pinInvoer.getRekID());
-            //Executer exec = new Executer(rekeningID, klantID, ad, pasID);
+            Executer exec = new Executer(rekeningID, klantID, ad, pasID);
             String caseSwitch = ad.getString();
-            
-            //pasID = pinInvoer.getPasID();
-            //klantID = pinInvoer.getKlantID();
+
             switch (caseSwitch)                                         //IF !ABC#, do nothing MISSING
             {
                 case "AKEY": //Geld opnemen
@@ -98,7 +92,7 @@ namespace GUI_Project_periode_3
                     break;
                 case "CKEY": //Snel 70 euro
                     amount = 70;
-                    //httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
                     new DankU().Show();
                     Thread.Sleep(1);
                     this.Close();

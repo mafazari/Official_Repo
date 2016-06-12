@@ -85,10 +85,6 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="PinError.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PinError.Designer.cs" />
     <Compile Include="PinInvoer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,7 +144,6 @@
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PinError.resx" />
     <EmbeddedResource Include="PinInvoer.resx">
       <DependentUpon>PinInvoer.cs</DependentUpon>
     </EmbeddedResource>

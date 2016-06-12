@@ -49,8 +49,6 @@ namespace GUI_Project_periode_3
             return klantID;
         }
 
-        SerialPort pininv = ArduinoClass.getPort();
-
         private void Form2_Load(object sender, EventArgs e)
         {
             //Executer ex = new Executer();
@@ -105,22 +103,12 @@ namespace GUI_Project_periode_3
                             //Error.show(pincode);
                         }
 
-                        
-                        /*else if (input.Contains("*KEY"))               
-                        {
-                            //Error.show(pincode);
-                            new Home().Show();                         // NEEDS TO BE REMOVED WHEN if (PinCorrect == true) WORKS
-                            Thread.Sleep(1);
-                            this.Close();
-                            break;
-                        }*/
-
                         if (insertedDigits == 4)
                         {
                             if (input.Contains("*")) { confirmed = true; }
                             //Error.show("rek:" + rekeningID + "\npin:" + pincode);
                             //Error.show(security.makeHash(11248649, 1234));
-                            if (security.checkHash(rekeningID, pincode) == true)          
+                            if (security.checkHash(rekeningID, pincode) == true)                 
                             {
                                 new Home().Show();
                                 Thread.Sleep(1);
@@ -133,17 +121,6 @@ namespace GUI_Project_periode_3
                             }
 
                         }
-                        /* if (insertedDigits == 4)
-                         {
-                              if(security.checkHash(rekeningID, pincode) == true)
-                             {
-                                 attempt++;
-                                 Error.show("Pin incorrect. Attempt #:" + attempt);
-                                 clearall();
-                                 insertedDigits = 0;
-                                 pincode = "";
-                             }
-                         } */
                         //String hashEmu = "MTEyNDg2NDkxMjM0";
                         //int rekEmu = 11248649;
                         //int pinEmu = Convert.ToInt32(pincode);
@@ -249,33 +226,9 @@ namespace GUI_Project_periode_3
             return result;
         }
 
-        private void Start()
-        {
-            while (true)
-            {
-                ArduinoClass.getPort();
-            }
-
-        }
-
         private void label3_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void accept(object sender, EventArgs e)
-        {
-            ArduinoClass.strInput();
-            String read = pininv.ReadLine();
-
-            if (read.Contains("*KEY"))
-                {
-
-                    new Home().Show();
-                    Thread.Sleep(1);
-                    this.Close();  
-
-                }
         }
 }
 }

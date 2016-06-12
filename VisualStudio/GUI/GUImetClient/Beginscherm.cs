@@ -77,13 +77,8 @@ namespace GUImetClient
                         executer = new Executer(rekeningID, KlantID, arduino, pasID);
                         break;
                     }
-                    //pinInvoer.Show();
+                    
                 }
-               /* if (!httpget.getActiefStand(pasID))
-                {
-                    BlockScreen tmp = new BlockScreen();
-                    break;
-                } */
                 pinInvoer.Show();
                 
                 Thread.Sleep(1);
@@ -102,7 +97,7 @@ namespace GUImetClient
 
         }
 
-        private Boolean checkInput(String input)
+        private Boolean checkInput(String input) //might be useful for pininvoer
         {
 
             Boolean result = false;
@@ -123,13 +118,7 @@ namespace GUImetClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //new Form1().Show();
-            //Thread.Sleep(1);
-            //this.Hide();
 
-            new Home().Show();
-            Thread.Sleep(1);
-            this.Close();
         }
     }
 }

@@ -28,7 +28,6 @@ namespace GUI_Project_periode_3
         private void Form4_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
-            //PinInvoer pinInvoer = new PinInvoer();
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, ad, Home.pasID);

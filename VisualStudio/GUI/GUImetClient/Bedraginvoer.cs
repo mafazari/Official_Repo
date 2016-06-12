@@ -144,5 +144,10 @@ namespace GUI_Project_periode_3
         {
 
         }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

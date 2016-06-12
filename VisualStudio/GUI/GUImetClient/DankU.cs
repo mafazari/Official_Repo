@@ -22,18 +22,8 @@ namespace GUI_Project_periode_3
         {
             InitializeComponent();
             Cursor.Hide();
-            
-
-            /*timer.Interval = 6000;
-            timer.Start();
-            timer.Tick += new EventHandler(gotoBeginScreen);
-            timer.Invoke();*/
-            // if (timer.Tick == true)
-
-            //{
-
-            //}
         }
+
         private void DankU_Load(object sender, EventArgs e)
         {
             gotoBeginScreen();
