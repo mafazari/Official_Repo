@@ -110,7 +110,7 @@ namespace GUI_Project_periode_3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Transactie().Show();
+            //new Transactie().Show();
             Thread.Sleep(1);
             this.Close();
         }

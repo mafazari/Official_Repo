@@ -103,12 +103,6 @@
     <Compile Include="Opnemen.Designer.cs">
       <DependentUpon>Opnemen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactie.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactie.Designer.cs">
-      <DependentUpon>Transactie.cs</DependentUpon>
-    </Compile>
     <Compile Include="Saldo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,9 +146,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Opnemen.resx">
       <DependentUpon>Opnemen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactie.resx">
-      <DependentUpon>Transactie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Saldo.resx">
       <DependentUpon>Saldo.cs</DependentUpon>
