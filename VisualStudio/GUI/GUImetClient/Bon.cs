@@ -14,8 +14,19 @@ namespace GUI_Project_periode_3
 {
     public partial class Bon : Form
     {
+        //private String userName;
+        private int amount;
+
         public Bon()
         {
+            InitializeComponent();
+            Cursor.Hide();
+        }
+
+        public Bon(int a)
+        {
+            //this.userName = u;
+            this.amount = a;
             InitializeComponent();
             Cursor.Hide();
         }
@@ -23,11 +34,12 @@ namespace GUI_Project_periode_3
         private void Bon_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
-            //Printer print = new Printer();                      //????????????????????
+            Printer print = new Printer(amount);                      //????????????????????
             String caseString = ad.getString();
             switch (caseString)
             {
                 case "*KEY":                                    //print bon
+                    //print.printTicket();
                     new DankU().Show();
                     Thread.Sleep(1);
                     this.Hide();

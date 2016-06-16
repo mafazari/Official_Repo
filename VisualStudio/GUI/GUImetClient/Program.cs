@@ -514,7 +514,7 @@ public class Executer
                 checkSaldo();
                 break;
             case 3:
-                quickPin();
+                ///quickPin();
                 break;
             case 4:
                 break;
@@ -601,8 +601,8 @@ public class Executer
             asker.Hide();
             if (printTicket == true)
             {
-                Printer bonPrinter = new Printer(userName, amount);
-                bonPrinter.printTicket();
+                //Printer bonPrinter = new Printer(userName, amount);
+                //bonPrinter.printTicket();
             }
             if (goBack != false)
             {
@@ -639,25 +639,25 @@ public class Executer
         }
     }
 
-    private void quickPin()
+   /* private void quickPin()
     {
-        Printer bonPrinter = new Printer(userName, 70);
+        //Printer bonPrinter = new Printer(userName, 70);
         bonPrinter.printTicket();
         DankU quickBye = new DankU();
         System.Threading.Thread.Sleep(5000);
         endOfSession = true;
         quickBye.Hide();
-    }
+    }*/
 }
 
 public class Printer
 {
     private String userName;
-    private double amount;
+    private int amount;
 
-    public Printer(String s, double b)
+    public Printer(int b)
     {
-        this.userName = s;
+        //this.userName = s;
         this.amount = b;
     }
 
@@ -665,8 +665,8 @@ public class Printer
     {
         String bedrag = amount.ToString();
         ILabel _label;
-        _label = Framework.Open(@"C:\DYMO\bonPrint.label");
-        _label.SetObjectText("Klantnaam", userName);
+        _label = Framework.Open(@"C:\Program Files (x86)\DYMO\bonPrint.label");
+        //_label.SetObjectText("Klantnaam", userName);
         _label.SetObjectText("bedrag", bedrag + "€");
         _label.SetObjectText("DATUM-TIJD", "");
         IPrinter printer = Framework.GetPrinters().First();

@@ -42,28 +42,28 @@ namespace GUI_Project_periode_3
                 case "1KEY": //10 euro ---> httppost -10euro
                     amount = 10;
                     httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                    new Bon().Show();
+                    new Bon(amount).Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "3KEY": //20 euro
                     amount = 20;
                     httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                    new Bon().Show();
+                    new Bon(amount).Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "4KEY": //50 euro
                     amount = 50;
                     httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                    new Bon().Show();
+                    new Bon(amount).Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
                 case "6KEY": //70 euro
                     amount = 70;
                     httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                    new Bon().Show();
+                    new Bon(amount).Show();
                     Thread.Sleep(1);
                     this.Close();
                     break;
