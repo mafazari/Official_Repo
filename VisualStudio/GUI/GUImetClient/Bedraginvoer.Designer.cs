@@ -36,6 +36,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.bedragInvoerlbl = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +59,9 @@
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.bedragInvoerlbl, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.pictureBox3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button3, 4, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
@@ -155,6 +161,43 @@
             this.pictureBox3.TabIndex = 16;
             this.pictureBox3.TabStop = false;
             // 
+            // label3
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.label3, 2);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(641, 327);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(633, 109);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Uw ingevoerde bedrag voldoet niet aan de eisen (zie scherm).\r\nProbeer het nog een" +
+    " keer.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.label4, 2);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(641, 218);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(633, 109);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Niet genoeg saldo. \r\nProbeer het nog een keer.";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.button3.Location = new System.Drawing.Point(1280, 439);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(313, 103);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Wissen [C]";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Bedraginvoer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,5 +225,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox bedragInvoerlbl;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button3;
     }
 }

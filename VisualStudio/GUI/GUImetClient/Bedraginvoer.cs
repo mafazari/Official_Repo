@@ -22,6 +22,8 @@ namespace GUI_Project_periode_3
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            label3.Hide();
+            label4.Visible = false;
             string pasID;
             string klantID;
             ArduinoData arduino = new ArduinoData();
@@ -60,31 +62,27 @@ namespace GUI_Project_periode_3
 
                 switch (input)
                 {
+
                     case "*KEY":
+                        this.Refresh();
                         amount = bedrag;
                         if (checker != 0)
                         {
-                            //Error.show("fuck you, i told you not to do it");
                             bedragString = "";
-                            //Error.show(bedragString);
                             setDisplay(bedragString);
                             this.Refresh();
                             break;
                         }
                         else if(amount > exec.saldo)
                         {
-                            //Error.show("Not enough moniz");
                             bedragString = "";
-                            //Error.show(bedragString);
                             setDisplay(bedragString);
                             this.Refresh();
                             break;
                         }
                         else if(amount < 10)
                         {
-                            //Error.show("tf u tryin nigga");
                             bedragString = "";
-                            //Error.show(bedragString);
                             setDisplay(bedragString);
                             this.Refresh();
                             break;
@@ -98,12 +96,21 @@ namespace GUI_Project_periode_3
                             this.Close();
                             break;
                         }
-                        
+
+                    case "CKEY":                                     //press 2x c for clear or c+*?? bug
+
+                        bedragString = "";
+                        setDisplay(bedragString);
+                        this.Refresh();                              // USED TO RESET BEDRAGSTRING TO null WHEN CLEARED
+                        break;
+
                     case "#KEY": // stoppen
                         new Stoppen().Show();
                         Thread.Sleep(1);
                         this.Close();
                         break;
+
+                        
                 }
             }
         }
