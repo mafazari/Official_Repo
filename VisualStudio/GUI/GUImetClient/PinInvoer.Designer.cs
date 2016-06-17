@@ -36,8 +36,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,13 +55,13 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.22777F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.22777F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.label3, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.label4, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label5, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.label6, 5, 2);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 7, 4);
             this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label7, 2, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -71,6 +71,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1920, 1080);
             this.tableLayoutPanel2.TabIndex = 7;
@@ -99,9 +101,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(651, 648);
+            this.label2.Location = new System.Drawing.Point(812, 648);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(638, 216);
+            this.label2.Size = new System.Drawing.Size(788, 216);
             this.label2.TabIndex = 6;
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -158,17 +160,6 @@
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(1724, 867);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "verder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -178,6 +169,19 @@
             this.pictureBox1.Size = new System.Drawing.Size(318, 410);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tableLayoutPanel2.SetColumnSpan(this.label7, 4);
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 36F);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(651, 864);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(638, 216);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Voer uw pin in.\r\nDruk op [C] om alles te wissen.";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PinInvoer
             // 
@@ -207,6 +211,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
     }
 }

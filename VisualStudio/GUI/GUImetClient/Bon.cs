@@ -14,8 +14,9 @@ namespace GUI_Project_periode_3
 {
     public partial class Bon : Form
     {
-        //private String userName;
+        private String klantid;
         private int amount;
+        private int rekeningID;
 
         public Bon()
         {
@@ -23,10 +24,11 @@ namespace GUI_Project_periode_3
             Cursor.Hide();
         }
 
-        public Bon(int a)
+        public Bon(int a, String k, int r)
         {
-            //this.userName = u;
+            this.klantid = k;
             this.amount = a;
+            this.rekeningID = r;
             InitializeComponent();
             Cursor.Hide();
         }
@@ -34,21 +36,30 @@ namespace GUI_Project_periode_3
         private void Bon_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
-            Printer print = new Printer(amount);                      //????????????????????
-            String caseString = ad.getString();
-            switch (caseString)
+            Printer print = new Printer(amount,klantid,rekeningID);                      
+            
+            while (true)
             {
-                case "*KEY":                                    //print bon
-                    //print.printTicket();
-                    new DankU().Show();
-                    Thread.Sleep(1);
-                    this.Hide();
-                    break;
-                case "#KEY":
-                    new DankU().Show();
-                    Thread.Sleep(1);
-                    this.Hide();
-                    break;
+                String input = ad.getString();
+                if (input.Contains("*KEY") || input.Contains("#KEY"))
+                {
+                    String caseString = input;          // CAN ONLY BE * or #
+
+                    switch (caseString)
+                    {
+                        case "*KEY":
+                            print.printTicket();
+                            new DankU().Show();
+                            Thread.Sleep(1);
+                            this.Hide();
+                            break;
+                        case "#KEY":
+                            new DankU().Show();
+                            Thread.Sleep(1);
+                            this.Hide();
+                            break;
+                    }
+                }
             }
         }
 

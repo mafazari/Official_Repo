@@ -36,20 +36,27 @@ namespace GUI_Project_periode_3
             string balansString = Convert.ToString(balans);
             textBox1.Text = balansString + " €";
 
-            String caseString = ad.getString();
-
-            switch (caseString)
+            while (true)
             {
-                case "*KEY":
-                    new Bedraginvoer().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
-                case "#KEY":
-                    new Stoppen().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
+                String input = ad.getString();
+                if (input.Contains("*KEY") || input.Contains("#KEY"))
+                {
+                    String caseString = ad.getString();         // CAN ONLY BE * or #
+
+                    switch (caseString)
+                    {
+                        case "*KEY":
+                            new Bedraginvoer().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        case "#KEY":
+                            new Stoppen().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                    }
+                }
             }
         }
 

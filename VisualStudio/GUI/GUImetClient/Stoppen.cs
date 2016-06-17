@@ -23,20 +23,26 @@ namespace GUI_Project_periode_3
         public void Form9_Load(object sender, EventArgs e)
         {
             ArduinoData ad = new ArduinoData();
-            String caseString = ad.getString();
-
-            switch (caseString)
+            while (true)
             {
-                case "*KEY":
-                    new DankU().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
-                case "#KEY":
-                    new Home().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
+                String input = ad.getString();
+                if (input.Contains("*KEY") || input.Contains("#KEY"))
+                {
+                    String caseString = ad.getString();
+                    switch (caseString)
+                    {
+                        case "*KEY":
+                            new DankU().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        case "#KEY":
+                            new Home().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                    }
+                }
             }
         }
 
@@ -74,6 +80,9 @@ namespace GUI_Project_periode_3
 
         }
 
-       
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

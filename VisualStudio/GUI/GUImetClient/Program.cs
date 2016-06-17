@@ -652,22 +652,26 @@ public class Executer
 
 public class Printer
 {
-    private String userName;
+    private int rekID;
     private int amount;
+    private String klantid;
 
-    public Printer(int b)
+    public Printer(int b, String k, int r)
     {
-        //this.userName = s;
         this.amount = b;
+        this.klantid = k;
+        this.rekID = r;
     }
 
     public void printTicket()
     {
         String bedrag = amount.ToString();
         ILabel _label;
-        _label = Framework.Open(@"C:\Program Files (x86)\DYMO\bonPrint.label");
-        //_label.SetObjectText("Klantnaam", userName);
+        _label = Framework.Open(@"C:\Users\Marco\Documents\School\TI\Official_OP4\Documenten\hollandBankLabel.label");
+        _label.SetObjectText("Klantnaam", klantid);
         _label.SetObjectText("bedrag", bedrag + "€");
+        String rekenID = rekID.ToString();
+        _label.SetObjectText("rekID", rekenID);
         _label.SetObjectText("DATUM-TIJD", "");
         IPrinter printer = Framework.GetPrinters().First();
         if (printer is ILabelWriterPrinter)

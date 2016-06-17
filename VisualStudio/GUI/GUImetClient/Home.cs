@@ -76,34 +76,54 @@ namespace GUI_Project_periode_3
             //Error.show("HOMESCREEN Form1_Load INFO" + "\nRekeningID string: " + getRekID() + "\nRekeningID int: " + rekID + "\nKlantID: " + getKlantID() + "\npasID: " + getPasID());
             this.Refresh();
             Executer exec = new Executer(rekeningID, klantID, ad, pasID);
-            String caseSwitch = ad.getString();
-
-            switch (caseSwitch)                                         //IF !ABC#, do nothing MISSING
+            while (true)
             {
-                case "AKEY": //Geld opnemen
-                    new Opnemen().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
-                case "BKEY": //Saldo opvragen
-                    new Saldo().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
-                case "CKEY": //Snel 70 euro
-                    amount = 70;
-                    httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                    new DankU().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
-                case "#KEY" : //stoppen
-                    new Stoppen().Show();
-                    Thread.Sleep(1);
-                    this.Close();
-                    break;
+                String input = ad.getString();
+                if (input.Contains("AKEY") || input.Contains("BKEY") || input.Contains("CKEY") || input.Contains("#KEY"))
+                {
+                    String caseSwitch = input;    // CAN ONLY BE A, B, C or #
+
+                    switch (caseSwitch)
+                    {
+                        case "AKEY": //Geld opnemen
+                            new Opnemen().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        case "BKEY": //Saldo opvragen
+                            new Saldo().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        case "CKEY": //Snel 70 euro
+                            amount = 70;
+                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                            new DankU().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        case "#KEY": //stoppen
+                            new Stoppen().Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                    }
+                }
             }
         }
+        /*whle(true)
+        {
+            String koekje = ad.getString();
+            if(koekje.Contains("A"))
+            {
+                break;  
+            }
+            else if(koekje.Contains("B"))
+                {
+                break;
+            }
+
+        }*/
 
         private void button5_Click(object sender, EventArgs e)
         {

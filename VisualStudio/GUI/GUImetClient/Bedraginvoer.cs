@@ -45,31 +45,60 @@ namespace GUI_Project_periode_3
             while (true)
             {
                 input = arduino.getString();
-                if(!input.Contains("*KEY")) //missing other buttons
+
+                if (!input.Contains("NEWUID") && (input.Contains("1") || input.Contains("2") || input.Contains("3") || input.Contains("4KEY") || input.Contains("5KEY") || input.Contains("6KEY") || input.Contains("7KEY") || input.Contains("8KEY") || input.Contains("9KEY") || input.Contains("0KEY"))) //!input.Contains("*") || !input.Contains("$") || !input.Contains("A") || !input.Contains("B") || !input.Contains("C") || !input.Contains("#") || 
                 {
                     this.Refresh();
                     bedragString += input.ElementAt(0);
                 }
-                
-                bool test;
-                //this.Refresh();
+
                 Int32.TryParse(bedragString, out bedrag);
                 setDisplay(bedragString);
-                //}//Convert.ToString(input);
 
-                //String caseSwitch = arduino.getString();
+                int checker = bedrag % 10;
+                
+
                 switch (input)
                 {
                     case "*KEY":
                         amount = bedrag;
-                        //Error.show(amount);
-                        this.Refresh();
+                        if (checker != 0)
+                        {
+                            //Error.show("fuck you, i told you not to do it");
+                            bedragString = "";
+                            //Error.show(bedragString);
+                            setDisplay(bedragString);
+                            this.Refresh();
+                            break;
+                        }
+                        else if(amount > exec.saldo)
+                        {
+                            //Error.show("Not enough moniz");
+                            bedragString = "";
+                            //Error.show(bedragString);
+                            setDisplay(bedragString);
+                            this.Refresh();
+                            break;
+                        }
+                        else if(amount < 10)
+                        {
+                            //Error.show("tf u tryin nigga");
+                            bedragString = "";
+                            //Error.show(bedragString);
+                            setDisplay(bedragString);
+                            this.Refresh();
+                            break;
+                        }
+                        else
+                        {
+                            this.Refresh();
+                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                            new Bon(amount, klantID, rekID).Show();
+                            Thread.Sleep(1);
+                            this.Close();
+                            break;
+                        }
                         
-                        httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                        new Bon().Show();
-                        Thread.Sleep(1);
-                        this.Close();
-                        break;
                     case "#KEY": // stoppen
                         new Stoppen().Show();
                         Thread.Sleep(1);
@@ -146,6 +175,11 @@ namespace GUI_Project_periode_3
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }

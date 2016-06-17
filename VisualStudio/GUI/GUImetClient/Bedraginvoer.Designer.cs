@@ -35,10 +35,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.bedragInvoerlbl = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +50,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66954F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66515F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox2, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.button2, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.button1, 3, 5);
@@ -129,8 +126,10 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(633, 109);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Voer het gewenste bedrag in";
+            this.label2.Text = "Het minimale op te nemen bedrag is €10.\r\nVoer het gewenste bedrag in in veelvoude" +
+    "n van 10.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // bedragInvoerlbl
             // 
@@ -144,15 +143,6 @@
             this.bedragInvoerlbl.TabIndex = 13;
             this.bedragInvoerlbl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bedragInvoerlbl.TextChanged += new System.EventHandler(this.bedragInvoerlbl_TextChanged);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 870);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(313, 207);
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
@@ -179,7 +169,6 @@
             this.Load += new System.EventHandler(this.Form3_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
@@ -192,7 +181,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox bedragInvoerlbl;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

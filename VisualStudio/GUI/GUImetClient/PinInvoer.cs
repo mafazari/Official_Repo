@@ -67,74 +67,62 @@ namespace GUI_Project_periode_3
 
             Label[] lblarr = new Label[4];
             fillarr(lblarr);
-            while (pinCorrect == false)
+            while (pinCorrect == false) //while true
             {
                 int insertedDigits = 0;
                 Boolean confirmed = false;
                 String input= "";
-                
 
-                if (!input.Contains("AKEY") || !input.Contains("BKEY") || !input.Contains("$KEY") || !input.Contains("#KEY"))
-                {
-                     while (confirmed == false)
-                        {
+                    while (confirmed == false)
+                    {
                         input = arduino.getString();
-
-                        if (checkInput(input) == true && insertedDigits < 4)
+                        if (!input.Contains("NEWUID") && (input.Contains("1") || input.Contains("2") || input.Contains("3") || input.Contains("4KEY") || input.Contains("5KEY") || input.Contains("6KEY") || input.Contains("7KEY") || input.Contains("8KEY") || input.Contains("9KEY") || input.Contains("0KEY")))
                         {
-                            insertedDigits++;
-                            switch (insertedDigits)
-                            {
-                                case 1:
-                                    label3.Text = "*";
-                                    break;
-                                case 2:
-                                    label4.Text = "*";
-                                    break;
-                                case 3:
-                                    label5.Text = "*";
-                                    break;
-                                case 4:
-                                    label6.Text = "*";
-                                    break;
-                            }
-                            this.Refresh();
-                            pincode += input.ElementAt(0);
-                            //Error.show(pincode);
-                        }
 
-                        if (insertedDigits == 4)
-                        {
-                            if (input.Contains("*")) { confirmed = true; }
-                            //Error.show("rek:" + rekeningID + "\npin:" + pincode);
-                            //Error.show(security.makeHash(11248649, 1234));
-                            if (security.checkHash(rekeningID, pincode) == true)                 
+                            if (checkInput(input) == true && insertedDigits < 4)
                             {
-                                new Home().Show();
-                                Thread.Sleep(1);
-                                this.Close();
-                                break;
-                            } 
-                            //else if (security.checkHash(rekeningID, pincode) == false)
-                            {
-                               // Error.show("Incorrect Hash");
+                                insertedDigits++;
+                                switch (insertedDigits)
+                                {
+                                    case 1:
+                                        label3.Text = "*";
+                                        break;
+                                    case 2:
+                                        label4.Text = "*";
+                                        break;
+                                    case 3:
+                                        label5.Text = "*";
+                                        break;
+                                    case 4:
+                                        label6.Text = "*";
+                                        break;
+                                }
+                                this.Refresh();
+                                pincode += input.ElementAt(0);
+                                //Error.show(pincode);
                             }
 
+                            if (insertedDigits == 4)
+                            {
+                                if (input.Contains("*")) { confirmed = true; }
+                                if (security.checkHash(rekeningID, pincode) == true)
+                                {
+                                    new Home().Show();
+                                    Thread.Sleep(1);
+                                    this.Close();
+                                    break;
+                                }
+                            }
+                            int rek = Convert.ToInt32(rekeningID);
+                            int pin = Convert.ToInt32(pincode);
                         }
-                        //String hashEmu = "MTEyNDg2NDkxMjM0";
-                        //int rekEmu = 11248649;
-                        //int pinEmu = Convert.ToInt32(pincode);
-                        int rek = Convert.ToInt32(rekeningID);
-                        int pin = Convert.ToInt32(pincode);
-
-                        if (input.Contains("CKEY")) //Clear all KEY
+                        if (input.Contains("CKEY")) //Clear all KEY WORKS
                         {
                             pincode = "";                              // USED TO RESET PINCODE TO null WHEN CLEARED
                             clearall();
                             insertedDigits = 0;
                         }
                     }
-                }
             }
         }
         private void fillarr(Label[] lblarr)
@@ -167,13 +155,6 @@ namespace GUI_Project_periode_3
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.Text = ArduinoClass.strInput();
-            new Home().Show();
-            this.Close();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
