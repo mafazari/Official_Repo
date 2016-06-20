@@ -15,6 +15,7 @@ using GUI_Project_periode_3;
 using System.Net;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 
 //using JSON.Net;
 //using System.Web.Script.Serialization.JavaScriptSerializer;
@@ -30,7 +31,7 @@ namespace GUI_Project_periode_3
         static void Main()
         {
             //Hash hash = new Hash();
-            //Error.show(hash.makeHash(11248649, 1234));
+            //Error.show(hash.makeHash("HOLB0420", "1234"));
             
            
             Application.EnableVisualStyles();
@@ -73,6 +74,8 @@ namespace GUI_Project_periode_3
     {
         static SerialPort Arduino = new SerialPort();
         static String portName = "COM6";
+        String amount;
+
         public bool makePort(String s)
         {
             portName = s;
@@ -123,9 +126,80 @@ namespace GUI_Project_periode_3
 
             return str;
         }
+        
+        public void dispense(int a)
+        {
+            amount = Convert.ToString(a);
+            Arduino.Write(amount);
+        }
 
     }
-    public static class Error
+public class ArduinoDispenserClass
+{
+    static SerialPort Arduino = new SerialPort();
+    static String portName = "COM6";
+    String amount;
+
+    public bool makePort(String s)
+    {
+        portName = s;
+        bool status = false;
+        Arduino.BaudRate = 9600;
+        Arduino.PortName = portName;
+        // Arduino.DataReceived
+
+        try
+        {
+            Arduino.Open();
+            status = true;
+        }
+        catch (System.IO.IOException)
+        {
+            Error.show("Poort niet gevonden", "Error");
+            // Console.WriteLine(e.Message);
+        }
+        catch (System.UnauthorizedAccessException)
+        {
+            Error.show("Toegang tot de compoort is geweigerd", "Error");
+            // Console.WriteLine(ex.Message);
+        }
+        catch (Exception)
+        {
+            Error.show("No port selected", "Error");
+            // Console.WriteLine(exc.Message);   
+        }
+        return status;
+    }
+    public void closePort(String s)
+    {
+        Arduino.Close();
+    }
+    public static SerialPort getPort()
+    {
+        return Arduino;
+    }
+
+    public static string strInput()
+    {
+        string str = "";
+
+        while (str.Equals(""))
+        {
+            str = Arduino.ReadLine().ToString().Trim();
+        }
+
+        return str;
+    }
+
+    public void dispense(int a)
+    {
+        amount = Convert.ToString(a);
+        Arduino.Write(amount);
+    }
+
+}
+
+public static class Error
     {
         public static void show(String s, String x)
         {
@@ -179,7 +253,7 @@ namespace GUI_Project_periode_3
             //Error.show("S: " +s);
             String loc = String.Concat("api/rekenings/", s);
             Rekening result = getRekeningData(loc).Result;
-            //result = JsonConvert.DeserializeObject<Rekening>(loc);
+
             int Balans = result.Balans;
 
             return result;
@@ -701,7 +775,7 @@ public class Hash
         Int32.TryParse(pincode, out pincodecv);
         bool status = false;
         HTTPget temporary = new HTTPget();
-        string Hash = makeHash(RekeningIDcv, pincodecv);
+        string Hash = makeHash(RekeningID, pincode);
         if (Hash == temporary.getHash(RekeningID))
         {
             status = true;
@@ -710,10 +784,24 @@ public class Hash
         return status;
 
     }
-    public String makeHash(int RekeningID, int pincode)
+    public String makeHash(String RekeningID, String pincode)
+    {
+        string input = String.Concat(RekeningID, pincode);
+        byte[] bytes = Encoding.UTF8.GetBytes(input);
+        SHA512Managed hashstring = new SHA512Managed();
+        byte[] hash = hashstring.ComputeHash(bytes);
+        string hashString = string.Empty;
+        foreach (byte x in hash)
+        {
+            hashString += String.Format("{0:x2}", x);
+        }
+        return hashString;
+    }
+
+    /*public String makeHash(int RekeningID, int pincode)
     {
         return Convert.ToBase64String(Encoding.UTF8.GetBytes(String.Concat(RekeningID, pincode)));
-    }
+    }*/
     public void blockCard(String PasID)
     {
 

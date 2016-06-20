@@ -31,6 +31,8 @@ namespace GUI_Project_periode_3
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, ad, Home.pasID);
+            ArduinoDispenserClass adc = new ArduinoDispenserClass();
+            adc.makePort("COM5");
 
             int amount;
             int rekID = Convert.ToInt32(Home.rekeningID);
@@ -47,6 +49,7 @@ namespace GUI_Project_periode_3
                         case "1KEY": //10 euro
                             amount = 10;
                             httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                            adc.dispense(10);
                             new Bon(amount,klantID,rekID).Show();
                             Thread.Sleep(1);
                             this.Close();
