@@ -33,8 +33,8 @@ namespace GUI_Project_periode_3
             ArduinoData ad = new ArduinoData();
             HTTPget httpget = new HTTPget();
             int balans = httpget.getRekening(rekeningID).Balans;
-            string balansString = Convert.ToString(balans);
-            textBox1.Text = balansString + " €";
+            string balansString = Convert.ToString(balans/100);
+            textBox1.Text = balansString + ".00 €";
 
             while (true)
             {

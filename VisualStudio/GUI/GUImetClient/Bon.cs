@@ -16,7 +16,7 @@ namespace GUI_Project_periode_3
     {
         private String klantid;
         private int amount;
-        private int rekeningID;
+        private string rekeningID;
 
         public Bon()
         {
@@ -24,7 +24,7 @@ namespace GUI_Project_periode_3
             Cursor.Hide();
         }
 
-        public Bon(int a, String k, int r)
+        public Bon(int a, String k, string r)
         {
             this.klantid = k;
             this.amount = a;
@@ -41,7 +41,7 @@ namespace GUI_Project_periode_3
             while (true)
             {
                 String input = ad.getString();
-                if (input.Contains("*KEY") || input.Contains("#KEY"))
+                if (input.Contains("*KEY") || input.Contains("#KEY") || input.Contains("0KEY"))
                 {
                     String caseString = input;          // CAN ONLY BE * or #
 
@@ -54,6 +54,13 @@ namespace GUI_Project_periode_3
                             this.Hide();
                             break;
                         case "#KEY":
+                            new DankU().Show();
+                            Thread.Sleep(1);
+                            this.Hide();
+                            break;
+                        case "0KEY":
+                            Email email = new Email(amount, rekeningID, Convert.ToInt32(klantid));
+                            email.sendEmail();
                             new DankU().Show();
                             Thread.Sleep(1);
                             this.Hide();

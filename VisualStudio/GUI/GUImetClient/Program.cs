@@ -16,6 +16,8 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Net.Mime;
 
 //using JSON.Net;
 //using System.Web.Script.Serialization.JavaScriptSerializer;
@@ -31,8 +33,10 @@ namespace GUI_Project_periode_3
         static void Main()
         {
             //Hash hash = new Hash();
-            //Error.show(hash.makeHash("HOLB0420", "1234"));
-            
+            //Error.show(hash.makeHash("HLDB0420", "1234"));
+
+            //Email email = new Email("1004", 100, "poep");
+            //email.sendEmail();
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -44,20 +48,20 @@ namespace GUI_Project_periode_3
                                                                         //HAS TO BE UP TO DATE WITH WEBAPI
     public class Rekening
     {
-        public int RekeningID { get; set; }
+        public string RekeningID { get; set; }
         public int Balans { get; set; }
         public String Hash { get; set; }
     }
     public class Transactie
     {
-        public int RekeningID { get; set; }
+        public string RekeningID { get; set; }
         public double Bedrag { get; set; }
         public string Locatie { get; set; }
     }
     public class Pas
     {
         public String PasID { get; set; }
-        public int RekeningID { get; set; }
+        public string RekeningID { get; set; }
         public int KlantID { get; set; }
         public int Actief { get; set; }
         public int FalsePin { get; set; }
@@ -136,21 +140,21 @@ namespace GUI_Project_periode_3
     }
 public class ArduinoDispenserClass
 {
-    static SerialPort Arduino = new SerialPort();
-    static String portName = "COM6";
+    static SerialPort Arduino2 = new SerialPort();
+    static String portName = "COM5";
     String amount;
 
     public bool makePort(String s)
     {
         portName = s;
         bool status = false;
-        Arduino.BaudRate = 9600;
-        Arduino.PortName = portName;
+        Arduino2.BaudRate = 9600;
+        Arduino2.PortName = portName;
         // Arduino.DataReceived
 
         try
         {
-            Arduino.Open();
+            Arduino2.Open();
             status = true;
         }
         catch (System.IO.IOException)
@@ -172,11 +176,11 @@ public class ArduinoDispenserClass
     }
     public void closePort(String s)
     {
-        Arduino.Close();
+        Arduino2.Close();
     }
     public static SerialPort getPort()
     {
-        return Arduino;
+        return Arduino2;
     }
 
     public static string strInput()
@@ -185,7 +189,7 @@ public class ArduinoDispenserClass
 
         while (str.Equals(""))
         {
-            str = Arduino.ReadLine().ToString().Trim();
+            str = Arduino2.ReadLine().ToString().Trim();
         }
 
         return str;
@@ -194,7 +198,9 @@ public class ArduinoDispenserClass
     public void dispense(int a)
     {
         amount = Convert.ToString(a);
-        Arduino.Write(amount);
+        Arduino2.Write(amount);
+        
+        Arduino2.Close();
     }
 
 }
@@ -295,7 +301,7 @@ public static class Error
         }
         static async Task<Klant> GetKlantData(String s)
         {
-            String location = s;
+            String location = String.Concat("/api/klants/",s);
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
             {
@@ -446,15 +452,15 @@ public class HTTPpost
             incrementFalsePin(PasID, uploaddata, nrfalsepin).Wait();
         }
     }
-    public void UpdateBalans(int RekeningID, int balans)
+    public void UpdateBalans(String RekeningID, int balans)
     {
         NieuwBalans(RekeningID, balans).Wait();
     }
-    static async Task Transactie(string PasID, String RekeningID, int balans)
+    static async Task Transactie(string PasID, string RekeningID, int balans)
     {
-        int RekeningIDint;
+        String RekeningIDint;
         string locatie = "HollandBank-Locatie21";
-        Int32.TryParse(RekeningID, out RekeningIDint);
+        //Int32.TryParse(RekeningID, out RekeningIDint);
         System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
         using (var client = new HttpClient(new HttpClientHandler { UseProxy = false, ClientCertificateOptions = ClientCertificateOption.Automatic }))
         {
@@ -462,7 +468,7 @@ public class HTTPpost
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HTTPpost part
-            var trans = new Transactie() { Bedrag = balans, Locatie = locatie, RekeningID = RekeningIDint };
+            var trans = new Transactie() { Bedrag = balans, Locatie = locatie, RekeningID = RekeningID };
             HttpResponseMessage response = await client.PostAsJsonAsync("api/transacties", trans).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
@@ -474,7 +480,7 @@ public class HTTPpost
             }
         }
     }
-    static async Task NieuwBalans(int RekeningID, int balans)
+    static async Task NieuwBalans(string RekeningID, int balans)
     {
         string rekStr = Convert.ToString(RekeningID);
         string balansStr = Convert.ToString(balans);
@@ -650,7 +656,7 @@ public class Executer
             }
             else
             {
-                uploadConnection.UpdateBalans(Int32.Parse(rekeningID), (saldo - amount));
+                uploadConnection.UpdateBalans(rekeningID, (saldo - amount));
                 uploadConnection.transaction(pasID, rekeningID, saldo - amount);
                 //Error.show(amount.ToString());
             }
@@ -726,11 +732,11 @@ public class Executer
 
 public class Printer
 {
-    private int rekID;
+    private string rekID;
     private int amount;
     private String klantid;
 
-    public Printer(int b, String k, int r)
+    public Printer(int b, String k, string r)
     {
         this.amount = b;
         this.klantid = k;
@@ -846,5 +852,58 @@ public class ArduinoData
     {
         int userID = 0;
         return userID;
+    }
+}
+
+public class Email
+{
+
+    private String userName;
+    private String rekeningNr;
+    private double amount;
+    private string email;
+
+    public Email(double b, String r, int klantid)
+    {
+        //this.userName = s;
+        this.amount = b;
+        this.rekeningNr = r;
+        HTTPget x = new HTTPget();
+        Klant tmp = x.getKlant(klantid.ToString());
+        email = tmp.email;
+        userName = tmp.achternaam;
+    }
+
+    public void sendEmail()
+    {
+        DateTime dt = DateTime.Now;
+        String strDate = "";
+        strDate = dt.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        mail.From = new MailAddress("hollandbank.noreply@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "TransactieBon: " + strDate;
+        //mail.Body = "Geachte Meneer/Mevrouw: "+userName+ "\nOpname van: "+amount+"\nRekeningnummer: "+rekeningNr;
+        mail.AlternateViews.Add(getEmbeddedImage(@"C:\Users\Marco\Documents\School\TI\Official_OP4\Documenten\PROJETLOGO.png"));
+
+        //System.Net.Mail.Attachment attachment;
+        //attachment = new System.Net.Mail.Attachment(@"C:\Users\Rowalski\Desktop\hi\wallpapers\142e94c38ca95ece.jpg");
+        //mail.Attachments.Add(attachment);
+
+        SmtpServer.Port = 587;
+        SmtpServer.Credentials = new System.Net.NetworkCredential("hollandbank.noreply@gmail.com", "hollandbank123");
+        SmtpServer.EnableSsl = true;
+
+        SmtpServer.Send(mail);
+    }
+    private AlternateView getEmbeddedImage(String filePath)
+    {
+        LinkedResource inline = new LinkedResource(filePath);
+        inline.ContentId = Guid.NewGuid().ToString();
+        string htmlBody = "Geachte Heer/Mevrouw " + userName + "<br>Opname van: " + amount + "€<br>Rekeningnummer: " + rekeningNr + "<br>" + "<br>" + "<br>" + "<br>" + "Bedankt voor uw transactie" + "<br>" + "<br>" + "Met vriendelijke groet," + "<br>" + "Holland Bank" + "<br>" + @"<img src='cid:" + inline.ContentId + @"'/>";
+        AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
+        alternateView.LinkedResources.Add(inline);
+        return alternateView;
     }
 }

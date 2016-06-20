@@ -39,7 +39,7 @@ namespace GUI_Project_periode_3
             ac.closePort("COM6");                   //CLOSE PORT
             for(int i = Application.OpenForms.Count -1; i >=0; i--)
             {
-                if (Application.OpenForms[i].Name != "DankU")
+                //if (Application.OpenForms[i].Name != "DankU")
                     Application.OpenForms[i].Close();
             }
             new Beginscherm().Show();

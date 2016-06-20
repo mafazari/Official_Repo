@@ -72,7 +72,7 @@ namespace GUI_Project_periode_3
 
         public void Form1_Load(object sender, EventArgs e)
         {
-            int rekID = Convert.ToInt32(getRekID());
+            //int rekID = Convert.ToInt32(getRekID());
             //Error.show("HOMESCREEN Form1_Load INFO" + "\nRekeningID string: " + getRekID() + "\nRekeningID int: " + rekID + "\nKlantID: " + getKlantID() + "\npasID: " + getPasID());
             this.Refresh();
             Executer exec = new Executer(rekeningID, klantID, ad, pasID);
@@ -97,7 +97,7 @@ namespace GUI_Project_periode_3
                             break;
                         case "CKEY": //Snel 70 euro
                             amount = 70;
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount));
                             new DankU().Show();
                             Thread.Sleep(1);
                             this.Close();

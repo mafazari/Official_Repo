@@ -32,10 +32,10 @@ namespace GUI_Project_periode_3
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, ad, Home.pasID);
             ArduinoDispenserClass adc = new ArduinoDispenserClass();
-            adc.makePort("COM5");
+            
 
             int amount;
-            int rekID = Convert.ToInt32(Home.rekeningID);
+            //int rekID = Convert.ToInt32(Home.rekeningID);
             pasID = Home.pasID;
             klantID = Home.klantID;
             while(true)
@@ -47,31 +47,38 @@ namespace GUI_Project_periode_3
                     switch (caseString)
                     {
                         case "1KEY": //10 euro
+                            adc.makePort("COM5");
                             amount = 10;
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                            adc.dispense(10);
-                            new Bon(amount,klantID,rekID).Show();
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount*100));
+                            adc.dispense(amount);
+                            new Bon(amount,klantID, Home.rekeningID).Show();
                             Thread.Sleep(1);
                             this.Close();
                             break;
                         case "3KEY": //20 euro
+                            adc.makePort("COM5");
                             amount = 20;
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                            new Bon(amount,klantID,rekID).Show();
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                            adc.dispense(amount);
+                            new Bon(amount,klantID, Home.rekeningID).Show();
                             Thread.Sleep(1);
                             this.Close();
                             break;
                         case "4KEY": //50 euro
+                            adc.makePort("COM5");
                             amount = 50;
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                            new Bon(amount,klantID,rekID).Show();
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                            adc.dispense(amount);
+                            new Bon(amount,klantID, Home.rekeningID).Show();
                             Thread.Sleep(1);
                             this.Close();
                             break;
                         case "6KEY": //70 euro
+                            adc.makePort("COM5");
                             amount = 70;
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                            new Bon(amount,klantID,rekID).Show();
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                            adc.dispense(amount);
+                            new Bon(amount,klantID, Home.rekeningID).Show();
                             Thread.Sleep(1);
                             this.Close();
                             break;

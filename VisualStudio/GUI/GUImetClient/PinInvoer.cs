@@ -113,7 +113,7 @@ namespace GUI_Project_periode_3
                                     break;
                                 }
                             }
-                            int rek = Convert.ToInt32(rekeningID);
+                            //int rek = Convert.ToInt32(rekeningID);
                             int pin = Convert.ToInt32(pincode);
                         }
                         if (input.Contains("CKEY")) //Clear all KEY WORKS

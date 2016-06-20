@@ -31,10 +31,12 @@ namespace GUI_Project_periode_3
             HTTPget httpget = new HTTPget();
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, arduino, Home.pasID);
+            ArduinoDispenserClass adc = new ArduinoDispenserClass();
+            //adc.makePort("COM5");
             //String caseString = arduino.getString();
 
             int amount;
-            int rekID = Convert.ToInt32(Home.rekeningID);
+            //int rekID = Convert.ToInt32(Home.rekeningID);
             pasID = Home.pasID;
             klantID = Home.klantID;
 
@@ -65,7 +67,7 @@ namespace GUI_Project_periode_3
 
                     case "*KEY":
                         this.Refresh();
-                        amount = bedrag;
+                        amount = bedrag*100;
                         if (checker != 0)
                         {
                             bedragString = "";
@@ -89,9 +91,11 @@ namespace GUI_Project_periode_3
                         }
                         else
                         {
+                            adc.makePort("COM5");
                             this.Refresh();
-                            httppost.UpdateBalans(rekID, (exec.saldo - amount));
-                            new Bon(amount, klantID, rekID).Show();
+                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount));
+                            adc.dispense(amount/100);
+                            new Bon(amount, klantID, Home.rekeningID).Show();
                             Thread.Sleep(1);
                             this.Close();
                             break;
