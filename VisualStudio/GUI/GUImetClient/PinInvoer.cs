@@ -105,6 +105,7 @@ namespace GUI_Project_periode_3
                             if (insertedDigits == 4)
                             {
                                 if (input.Contains("*")) { confirmed = true; }
+                            //Error.show(pincode);
                                 if (security.checkHash(rekeningID, pincode) == true)
                                 {
                                     new Home().Show();
@@ -114,7 +115,7 @@ namespace GUI_Project_periode_3
                                 }
                             }
                             //int rek = Convert.ToInt32(rekeningID);
-                            int pin = Convert.ToInt32(pincode);
+                            //int pin = Convert.ToInt32(pincode);
                         }
                         if (input.Contains("CKEY")) //Clear all KEY WORKS
                         {

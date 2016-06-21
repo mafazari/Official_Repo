@@ -32,7 +32,7 @@ namespace GUI_Project_periode_3
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, arduino, Home.pasID);
             ArduinoDispenserClass adc = new ArduinoDispenserClass();
-            //adc.makePort("COM5");
+            //adc.makePort("COM4");
             //String caseString = arduino.getString();
 
             int amount;
@@ -89,9 +89,16 @@ namespace GUI_Project_periode_3
                             this.Refresh();
                             break;
                         }
+                        else if(amount > 200)
+                        {
+                            bedragString = "";
+                            setDisplay(bedragString);
+                            this.Refresh();
+                            break;
+                        }
                         else
                         {
-                            adc.makePort("COM5");
+                            adc.makePort("COM4");
                             this.Refresh();
                             httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount));
                             adc.dispense(amount/100);
@@ -120,7 +127,7 @@ namespace GUI_Project_periode_3
         }
         public void setDisplay(String value)
         {
-            bedragInvoerlbl.Text = value + "€";
+            bedragInvoerlbl.Text = value + ".00 €";
         }
         public void clearDisplay()
         {

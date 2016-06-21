@@ -38,6 +38,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +62,8 @@
             this.tableLayoutPanel2.Controls.Add(this.button2, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.button3, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.button4, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -173,6 +177,28 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label2
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.label2, 2);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F);
+            this.label2.Location = new System.Drawing.Point(641, 648);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(633, 216);
+            this.label2.TabIndex = 10;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.label3, 2);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(641, 216);
+            this.label3.Name = "label3";
+            this.tableLayoutPanel2.SetRowSpan(this.label3, 2);
+            this.label3.Size = new System.Drawing.Size(633, 432);
+            this.label3.TabIndex = 11;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Opnemen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,5 +227,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

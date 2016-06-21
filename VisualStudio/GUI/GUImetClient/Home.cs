@@ -25,8 +25,54 @@ namespace GUI_Project_periode_3
         PinInvoer pinInvoer = new PinInvoer();
         HTTPget httpget = new HTTPget();
         HTTPpost httppost = new HTTPpost();
+        ArduinoDispenserClass adc = new ArduinoDispenserClass();
         int amount;
         //Error.show(rekeningID);
+
+        public static int bil10 = 10;
+        public static int bil20 = 7;
+        public static int bil50 = 6;
+
+        public bool berekener(int i)
+        {
+            bool ErgensAlGeldUitgegeven = false;
+            if (bil50 > 0)
+            {
+                int a = i / 50;
+                if (bil50 - a >= 0)
+                {
+                    i -= (50 * a); //i = 20
+                    bil50 -= a; //bil50 = 4
+                    //ErgensAlGeldUitgegeven = true;
+                }
+            }
+
+            if (bil20 > 0)
+            {
+                int b = i / 20;
+                if (bil20 - b >= 0)
+                {
+                    i -= (20 * b);
+                    bil20 -= b;
+                }
+            }
+            if (bil10 > 0)
+            {
+                int c = i / 10;
+                if (bil10 - c >= 0)
+                {
+                    i -= (10 * c);
+                    bil10 -= c;
+                }
+            }
+            if (i == 0)
+            {
+                ErgensAlGeldUitgegeven = true;
+            }
+            return ErgensAlGeldUitgegeven;
+        }
+       
+    
 
         public void giveInfo(string[] x)
         {
@@ -75,6 +121,7 @@ namespace GUI_Project_periode_3
             //int rekID = Convert.ToInt32(getRekID());
             //Error.show("HOMESCREEN Form1_Load INFO" + "\nRekeningID string: " + getRekID() + "\nRekeningID int: " + rekID + "\nKlantID: " + getKlantID() + "\npasID: " + getPasID());
             this.Refresh();
+
             Executer exec = new Executer(rekeningID, klantID, ad, pasID);
             while (true)
             {
@@ -97,10 +144,21 @@ namespace GUI_Project_periode_3
                             break;
                         case "CKEY": //Snel 70 euro
                             amount = 70;
-                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount));
-                            new DankU().Show();
-                            Thread.Sleep(1);
-                            this.Close();
+                            if (berekener(amount) == true)
+                            {
+                                adc.makePort("COM4");
+                                httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                                adc.dispense(amount);
+                                new DankU().Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                            }
+                            else
+                            {
+                                label2.Text = "Kan niet gedispensed worden.";
+                                System.Threading.Thread.Sleep(500);
+                                label2.Text = "";
+                            }
                             break;
                         case "#KEY": //stoppen
                             new Stoppen().Show();

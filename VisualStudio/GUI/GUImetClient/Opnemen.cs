@@ -19,6 +19,9 @@ namespace GUI_Project_periode_3
         //public int rekID;
         public static string pasID;
         public string klantID;
+        public string aanwezig50 = "ja";
+        public string aanwezig20 = "ja";
+        public string aanwezig10 = "ja";
 
         public Opnemen()
         {
@@ -32,7 +35,10 @@ namespace GUI_Project_periode_3
             HTTPpost httppost = new HTTPpost();
             Executer exec = new Executer(Home.rekeningID, Home.klantID, ad, Home.pasID);
             ArduinoDispenserClass adc = new ArduinoDispenserClass();
-            
+            Home home = new Home();
+
+
+            aanwzChker();
 
             int amount;
             //int rekID = Convert.ToInt32(Home.rekeningID);
@@ -47,40 +53,76 @@ namespace GUI_Project_periode_3
                     switch (caseString)
                     {
                         case "1KEY": //10 euro
-                            adc.makePort("COM5");
                             amount = 10;
-                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount*100));
-                            adc.dispense(amount);
-                            new Bon(amount,klantID, Home.rekeningID).Show();
-                            Thread.Sleep(1);
-                            this.Close();
+                            if (home.berekener(amount) == true)
+                            {
+                                adc.makePort("COM4");
+                                httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount*100));
+                                adc.dispense(amount);
+                                new Bon(amount,klantID, Home.rekeningID).Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                            }
+                            else
+                            {
+                                label2.Text = "Kan niet gedispensed worden.";
+                                System.Threading.Thread.Sleep(500);
+                                label2.Text = "";
+                            }
                             break;
                         case "3KEY": //20 euro
-                            adc.makePort("COM5");
                             amount = 20;
-                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
-                            adc.dispense(amount);
-                            new Bon(amount,klantID, Home.rekeningID).Show();
-                            Thread.Sleep(1);
-                            this.Close();
+                            if (home.berekener(amount) == true)
+                            {
+                                adc.makePort("COM4");
+                                httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                                adc.dispense(amount);
+                                new Bon(amount, klantID, Home.rekeningID).Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                            }
+                            else
+                            {
+                                label2.Text = "Kan niet gedispensed worden.";
+                                System.Threading.Thread.Sleep(500);
+                                label2.Text = "";
+                            }
                             break;
                         case "4KEY": //50 euro
-                            adc.makePort("COM5");
                             amount = 50;
-                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
-                            adc.dispense(amount);
-                            new Bon(amount,klantID, Home.rekeningID).Show();
-                            Thread.Sleep(1);
-                            this.Close();
+                            if (home.berekener(amount) == true)
+                            {
+                                adc.makePort("COM4");
+                                httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                                adc.dispense(amount);
+                                new Bon(amount, klantID, Home.rekeningID).Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                            }
+                            else
+                            {
+                                label2.Text = "Kan niet gedispensed worden.";
+                                System.Threading.Thread.Sleep(500);
+                                label2.Text = "";
+                            }
                             break;
                         case "6KEY": //70 euro
-                            adc.makePort("COM5");
                             amount = 70;
-                            httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
-                            adc.dispense(amount);
-                            new Bon(amount,klantID, Home.rekeningID).Show();
-                            Thread.Sleep(1);
-                            this.Close();
+                            if (home.berekener(amount) == true)
+                            {
+                                adc.makePort("COM4");
+                                httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
+                                adc.dispense(amount);
+                                new Bon(amount, klantID, Home.rekeningID).Show();
+                                Thread.Sleep(1);
+                                this.Close();
+                            }
+                            else
+                            {
+                                label2.Text = "Kan niet gedispensed worden.";
+                                System.Threading.Thread.Sleep(500);
+                                label2.Text = "";
+                            }
                             break;
                         case "7KEY": //bedrag invoer
                             new Bedraginvoer().Show();
@@ -166,6 +208,17 @@ namespace GUI_Project_periode_3
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
+        }
+        public void aanwzChker()
+        {
+            if (Home.bil50 == 0)
+                aanwezig50 = "nee";
+            if (Home.bil20 == 0)
+                aanwezig20 = "nee";
+            if (Home.bil10 == 0)
+                aanwezig10 = "nee";
+
+            label3.Text = "Beschikbare biljetten: \n 50: " + aanwezig50 + "\n 20: " + aanwezig20 + "\n 10: " + aanwezig10;
         }
     }
 }

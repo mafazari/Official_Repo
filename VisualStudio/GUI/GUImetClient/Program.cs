@@ -77,7 +77,7 @@ namespace GUI_Project_periode_3
     public class ArduinoClass
     {
         static SerialPort Arduino = new SerialPort();
-        static String portName = "COM6";
+        static String portName = "COM3";
         String amount;
 
         public bool makePort(String s)
@@ -141,7 +141,7 @@ namespace GUI_Project_periode_3
 public class ArduinoDispenserClass
 {
     static SerialPort Arduino2 = new SerialPort();
-    static String portName = "COM5";
+    static String portName = "COM4";
     String amount;
 
     public bool makePort(String s)
@@ -781,12 +781,13 @@ public class Hash
         Int32.TryParse(pincode, out pincodecv);
         bool status = false;
         HTTPget temporary = new HTTPget();
+        //Error.show(makeHash(RekeningID, pincode));
+        //Error.show(temporary.getHash(RekeningID));
         string Hash = makeHash(RekeningID, pincode);
-        if (Hash == temporary.getHash(RekeningID))
+        if (Hash.Equals(temporary.getHash(RekeningID)))
         {
             status = true;
         }
-        
         return status;
 
     }
@@ -901,7 +902,7 @@ public class Email
     {
         LinkedResource inline = new LinkedResource(filePath);
         inline.ContentId = Guid.NewGuid().ToString();
-        string htmlBody = "Geachte Heer/Mevrouw " + userName + "<br>Opname van: " + amount + "€<br>Rekeningnummer: " + rekeningNr + "<br>" + "<br>" + "<br>" + "<br>" + "Bedankt voor uw transactie" + "<br>" + "<br>" + "Met vriendelijke groet," + "<br>" + "Holland Bank" + "<br>" + @"<img src='cid:" + inline.ContentId + @"'/>";
+        string htmlBody = "Geachte Heer/Mevrouw " + userName + "<br>Opname van: " + amount/100 + "€<br>Rekeningnummer: " + rekeningNr + "<br>" + "<br>" + "<br>" + "<br>" + "Bedankt voor uw transactie" + "<br>" + "<br>" + "Met vriendelijke groet," + "<br>" + "Holland Bank" + "<br>" + @"<img src='cid:" + inline.ContentId + @"'/>";
         AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
         alternateView.LinkedResources.Add(inline);
         return alternateView;

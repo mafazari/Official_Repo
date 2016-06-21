@@ -33,7 +33,7 @@ namespace GUImetClient
             ArduinoClass bootup = new ArduinoClass();
             if (!config)
             {
-                bootup.makePort("COM6");
+                bootup.makePort("COM3");
                 config = true;
             }
 
@@ -73,6 +73,9 @@ namespace GUImetClient
                         //Error.show("PasID: " + pasID + "\nRekID: " + rekeningID + "\nKlantID: " + KlantID);
                         pinInvoer.giveInfo(pasInformation);
                         home.giveInfo(pasInformation);
+                        //Error.show(KlantID);
+                        //Error.show(rekeningID);
+                        //Error.show(pasID);
                         
                         executer = new Executer(rekeningID, KlantID, arduino, pasID);
                         break;

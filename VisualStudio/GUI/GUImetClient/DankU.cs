@@ -36,7 +36,7 @@ namespace GUI_Project_periode_3
             this.Show();
             this.Refresh();
             System.Threading.Thread.Sleep(5000);
-            ac.closePort("COM6");                   //CLOSE PORT
+            ac.closePort("COM3");                   //CLOSE PORT
             for(int i = Application.OpenForms.Count -1; i >=0; i--)
             {
                 //if (Application.OpenForms[i].Name != "DankU")
