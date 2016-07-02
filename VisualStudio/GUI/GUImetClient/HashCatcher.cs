@@ -10,20 +10,24 @@ using System.Windows.Forms;
 
 namespace GUImetClient
 {
-    public partial class OutOfOrder : Form
+    public partial class HashCatcher : Form
     {
-        public OutOfOrder()
+        public HashCatcher()
         {
             InitializeComponent();
         }
 
-        private void OutOfOrder_Load(object sender, EventArgs e)
+        private void HashCatcher_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        public HashCatcher(string rek, string pin)
         {
+            InitializeComponent();
+            Hash hash = new Hash();
+            textBox1.Text = hash.makeHash(rek, pin);
+            //hash.makeHash(rek, pin);
 
         }
     }

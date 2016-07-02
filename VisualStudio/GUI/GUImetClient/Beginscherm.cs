@@ -33,7 +33,7 @@ namespace GUImetClient
             ArduinoClass bootup = new ArduinoClass();
             if (!config)
             {
-                bootup.makePort("COM3");
+                bootup.makePort("COM6");
                 config = true;
             }
 
@@ -47,46 +47,66 @@ namespace GUImetClient
             Boolean pinCorrect;
             String[] pasInformation;
             bool EE = true;
-            while (true)
+            try
             {
-                pinCorrect = false;
-                pasInformation = new String[4];
-                reset = false;
-                executer = null;
-                String KlantID;
-                String rekeningID;
-                String pasID;
-                HTTPget httpget = new HTTPget();
-                HTTPpost httppost = new HTTPpost();
-
                 while (true)
                 {
-                    //String emu = ("AAAAAA\n11248649\n1004\n,NEWUID");
-                    String s = arduino.getFirstString();
-                    if (s.Contains("NEWUID"))
+                    pinCorrect = false;
+                    pasInformation = new String[4];
+                    reset = false;
+                    executer = null;
+                    String KlantID;
+                    String rekeningID;
+                    String pasID;
+                    HTTPget httpget = new HTTPget();
+                    HTTPpost httppost = new HTTPpost();
+
+                    while (true)
                     {
-                        pasInformation = s.Split('\n', '\n', '\n');
-                        KlantID = pasInformation[2];
-                        rekeningID = pasInformation[1];
-                        pasID = pasInformation[0];
-                        //Error.show(rekeningID + "," + KlantID + "," + pasID);
-                        //Error.show("PasID: " + pasID + "\nRekID: " + rekeningID + "\nKlantID: " + KlantID);
-                        pinInvoer.giveInfo(pasInformation);
-                        home.giveInfo(pasInformation);
-                        //Error.show(KlantID);
-                        //Error.show(rekeningID);
-                        //Error.show(pasID);
-                        
-                        executer = new Executer(rekeningID, KlantID, arduino, pasID);
-                        break;
+                        //String emu = ("AAAAAA\n11248649\n1004\n,NEWUID");
+                        String s = arduino.getFirstString();
+                        if (s.Contains("NEWUID"))
+                        {
+                            pasInformation = s.Split('\n', '\n', '\n');
+                            KlantID = pasInformation[2];
+                            rekeningID = pasInformation[1];
+                            pasID = pasInformation[0];
+                            //Error.show(rekeningID + "," + KlantID + "," + pasID);
+                            //Error.show("PasID: " + pasID + "\nRekID: " + rekeningID + "\nKlantID: " + KlantID);
+                            pinInvoer.giveInfo(pasInformation);
+                            home.giveInfo(pasInformation);
+                            //Error.show(KlantID);
+                            //Error.show(rekeningID);
+                            //Error.show(pasID);
+
+                            executer = new Executer(rekeningID, KlantID, arduino, pasID);
+
+                            break;
+                        }
+
                     }
-                    
+                    pinInvoer.Show();
+
+                    Thread.Sleep(1);
+                    this.Close();
+                    break;
                 }
-                pinInvoer.Show();
-                
-                Thread.Sleep(1);
-                this.Close();
-                break;
+            }
+            catch(Exception)
+            {
+                OutOfOrder error = new OutOfOrder();
+                error.Show();
+                error.Refresh();
+                List<Form> openForms = new List<Form>();
+                foreach (Form f in Application.OpenForms)
+                    openForms.Add(f);
+                foreach (Form f in openForms)
+                {
+                    if (f.Name != "OutOfOrder")
+                        f.Close();
+                }
+                while (true)
+                { } //Loop forever :)
             }
         }
 

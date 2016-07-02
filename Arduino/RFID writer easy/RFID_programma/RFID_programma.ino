@@ -14,21 +14,7 @@
  * MISO = Arduino Pin 12
  * MOSI = Arduino Pin 11
  */
-#include <SPI.h>
-#include <MFRC522.h>
-#define SS_PIN 10
-#define RST_PIN 9
-MFRC522 mfrc522(SS_PIN, RST_PIN);
-MFRC522::MIFARE_Key key;
-
-String PasID;
-String RekeningNR;
-String KlantID;
-
-byte PasIDblock[16];
-byte RekeningNRblock[16];
-byte KlantIDblock[16];
-
+#include <SPI.h>+
 void setup()
 {
   Serial.begin(9600);

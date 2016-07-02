@@ -18,6 +18,7 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Threading;
 
 //using JSON.Net;
 //using System.Web.Script.Serialization.JavaScriptSerializer;
@@ -37,7 +38,6 @@ namespace GUI_Project_periode_3
 
             //Email email = new Email("1004", 100, "poep");
             //email.sendEmail();
-           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Beginscherm());
@@ -77,7 +77,7 @@ namespace GUI_Project_periode_3
     public class ArduinoClass
     {
         static SerialPort Arduino = new SerialPort();
-        static String portName = "COM3";
+        static String portName = "COM6";
         String amount;
 
         public bool makePort(String s)
@@ -141,7 +141,7 @@ namespace GUI_Project_periode_3
 public class ArduinoDispenserClass
 {
     static SerialPort Arduino2 = new SerialPort();
-    static String portName = "COM4";
+    static String portName = "COM5";
     String amount;
 
     public bool makePort(String s)
@@ -202,6 +202,11 @@ public class ArduinoDispenserClass
         
         Arduino2.Close();
     }
+
+}
+
+public class OutOfOrderException : Exception
+{
 
 }
 
@@ -294,7 +299,9 @@ public static class Error
                 }
                 else
                 {
-                    String result = "0000";
+                new OutOfOrder().Show();
+                Thread.Sleep(1);
+                String result = "0000";
                     return result;
                 }
             }
@@ -318,7 +325,9 @@ public static class Error
                 }
                 else
                 {
-                    Klant a = new Klant();
+                new OutOfOrder().Show();
+                Thread.Sleep(1);
+                Klant a = new Klant();
                     return a;
                     //CONNECTION FAILED
                     //RETRY CLAUSE? or cut the program?
@@ -369,7 +378,9 @@ public static class Error
                 }
                 else
                 {
-                    Pas reject = new Pas();
+                //new OutOfOrder().Show();
+                //Thread.Sleep(1);
+                Pas reject = new Pas();
                     return reject;
                 }
 
@@ -393,7 +404,9 @@ public static class Error
                 }
                 else
                 {
-                    Pas reject = new Pas();
+                //new OutOfOrder().Show();
+                //Thread.Sleep(1);
+                Pas reject = new Pas();
                     return reject;
                 }
 
@@ -417,7 +430,9 @@ public static class Error
                     }
                     else
                     {
-                        Pas reject = new Pas();
+                //new OutOfOrder().Show();
+                //Thread.Sleep(1);
+                Pas reject = new Pas();
                         return reject;
                     }
 
@@ -902,7 +917,7 @@ public class Email
     {
         LinkedResource inline = new LinkedResource(filePath);
         inline.ContentId = Guid.NewGuid().ToString();
-        string htmlBody = "Geachte Heer/Mevrouw " + userName + "<br>Opname van: " + amount/100 + "€<br>Rekeningnummer: " + rekeningNr + "<br>" + "<br>" + "<br>" + "<br>" + "Bedankt voor uw transactie" + "<br>" + "<br>" + "Met vriendelijke groet," + "<br>" + "Holland Bank" + "<br>" + @"<img src='cid:" + inline.ContentId + @"'/>";
+        string htmlBody = "Geachte Heer/Mevrouw " + userName + "<br>Opname van: " + amount + "€<br>Rekeningnummer: " + rekeningNr + "<br>" + "<br>" + "<br>" + "<br>" + "Bedankt voor uw transactie" + "<br>" + "<br>" + "Met vriendelijke groet," + "<br>" + "Holland Bank" + "<br>" + @"<img src='cid:" + inline.ContentId + @"'/>";
         AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
         alternateView.LinkedResources.Add(inline);
         return alternateView;

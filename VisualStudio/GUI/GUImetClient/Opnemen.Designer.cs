@@ -198,6 +198,7 @@
             this.label3.Size = new System.Drawing.Size(633, 432);
             this.label3.TabIndex = 11;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Opnemen
             // 

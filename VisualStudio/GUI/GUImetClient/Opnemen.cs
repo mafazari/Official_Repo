@@ -56,7 +56,7 @@ namespace GUI_Project_periode_3
                             amount = 10;
                             if (home.berekener(amount) == true)
                             {
-                                adc.makePort("COM4");
+                                adc.makePort("COM5");
                                 httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount*100));
                                 adc.dispense(amount);
                                 new Bon(amount,klantID, Home.rekeningID).Show();
@@ -74,7 +74,7 @@ namespace GUI_Project_periode_3
                             amount = 20;
                             if (home.berekener(amount) == true)
                             {
-                                adc.makePort("COM4");
+                                adc.makePort("COM5");
                                 httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
                                 adc.dispense(amount);
                                 new Bon(amount, klantID, Home.rekeningID).Show();
@@ -92,7 +92,7 @@ namespace GUI_Project_periode_3
                             amount = 50;
                             if (home.berekener(amount) == true)
                             {
-                                adc.makePort("COM4");
+                                adc.makePort("COM5");
                                 httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
                                 adc.dispense(amount);
                                 new Bon(amount, klantID, Home.rekeningID).Show();
@@ -110,7 +110,7 @@ namespace GUI_Project_periode_3
                             amount = 70;
                             if (home.berekener(amount) == true)
                             {
-                                adc.makePort("COM4");
+                                adc.makePort("COM5");
                                 httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
                                 adc.dispense(amount);
                                 new Bon(amount, klantID, Home.rekeningID).Show();
@@ -219,6 +219,11 @@ namespace GUI_Project_periode_3
                 aanwezig10 = "nee";
 
             label3.Text = "Beschikbare biljetten: \n 50: " + aanwezig50 + "\n 20: " + aanwezig20 + "\n 10: " + aanwezig10;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -146,7 +146,7 @@ namespace GUI_Project_periode_3
                             amount = 70;
                             if (berekener(amount) == true)
                             {
-                                adc.makePort("COM4");
+                                adc.makePort("COM5");
                                 httppost.UpdateBalans(Home.rekeningID, (exec.saldo - amount * 100));
                                 adc.dispense(amount);
                                 new DankU().Show();

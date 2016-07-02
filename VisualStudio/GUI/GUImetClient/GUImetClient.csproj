@@ -79,6 +79,12 @@
     <Compile Include="BlockScreen.Designer.cs">
       <DependentUpon>BlockScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="HashCatcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HashCatcher.Designer.cs">
+      <DependentUpon>HashCatcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     <EmbeddedResource Include="BlockScreen.resx">
       <DependentUpon>BlockScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HashCatcher.resx">
+      <DependentUpon>HashCatcher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +161,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bedraginvoer.resx">
       <DependentUpon>Bedraginvoer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Opnemen.resx">
       <DependentUpon>Opnemen.cs</DependentUpon>
